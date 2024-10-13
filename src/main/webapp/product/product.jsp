@@ -105,9 +105,9 @@
                     <th>Mô tả</th>
                     <th colspan="2">Hành động</th>
                 </tr>
-                <c:forEach var="item" items="${productList}">
+                <c:forEach var="item" items="${productList}" varStatus="loop">
                     <tr>
-                        <td>0</td>
+                        <td>${loop.index + 1}</td>
                         <td>${item.id}</td>
                         <td>${item.name}</td>
                         <td>${item.price}</td>
@@ -117,8 +117,8 @@
                         <td>${item.brandName}</td>
                         <td>${item.description}</td>
                         <td>
-                            <button class="btn btn-edit">Sửa</button>
-                            <button class="btn btn-remove">Xóa</button>
+                            <button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>
                 </c:forEach>

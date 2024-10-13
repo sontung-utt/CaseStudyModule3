@@ -4,6 +4,8 @@ public class BrandCategory {
     private int id;
     private int idBrand;
     private int idCategory;
+    private String brandName;
+    private String categoryName;
 
     public BrandCategory() {
     }
@@ -37,5 +39,21 @@ public class BrandCategory {
 
     public void setIdCategory(int idCategory) {
         this.idCategory = idCategory;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

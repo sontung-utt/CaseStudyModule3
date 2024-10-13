@@ -13,6 +13,7 @@ public class ProductService implements IService<Product>{
     public ProductService(){
 
     }
+
     @Override
     public void add(Product product) {
         String sql = "insert into product(name, price, quantity, image, description, idBrandCategory)\n" +

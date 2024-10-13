@@ -158,7 +158,7 @@ th {
 }
 
 td {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 th, td {
@@ -211,6 +211,14 @@ th {
 
 .info-product tr:nth-child(odd) {
     background-color: burlywood;
+}
+
+.info-product i {
+    font-size: 18px;
+}
+
+.info-product table button {
+    cursor: pointer;
 }
 
 /*search*/
