@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 10/13/2024
-  Time: 8:34 AM
+  Date: 10/14/2024
+  Time: 12:13 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value='/css/addForm.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/addBrandCategory.css'/>">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,29 +68,37 @@
         </div>
     </div>
     <div class="form">
-        <form action="http://localhost:8080/brands?action=add" method="post">
+        <form action="" method="post">
             <table border="1">
                 <tr>
-                    <th colspan="2">THÊM MỚI THƯƠNG HIỆU</th>
+                    <th colspan="2">THÊM MỚI LOẠI SẢN PHẨM - THƯƠNG HIỆU</th>
                 </tr>
                 <tr>
                     <td class="info">
-                        <i class="fa-solid fa-gamepad"></i>
-                        <label for="name">Tên thương hiệu</label>
+                        <i class="fa-solid fa-box-archive"></i>
+                        <label for="idCategoryBrand">Loại sản phẩm</label>
                     </td>
-                    <td><input type="text" name="name" id="name"></td>
+                    <td>
+                        <select id="idCategoryBrand" name="idCategoryBrand">
+                            <option value="Java">Java</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td class="info">
-                        <i class="fa-regular fa-image"></i>
-                        <label for="image">Hình ảnh</label>
+                        <i class="fa-solid fa-box-archive"></i>
+                        <label for="idBrandCategory">Thương hiệu</label>
                     </td>
-                    <td><input type="text" name="image" id="image"></td>
+                    <td>
+                        <select id="idBrandCategory" name="idBrandCategory">
+                            <option value="Java">Java</option>
+                        </select>
+                    </td>
                 </tr>
 
                 <tr>
                     <td colspan="2" class="tdbtn">
-                        <a href=""><button>Thêm thương hiệu</button></a>
+                        <a href=""><button>Thêm mới</button></a>
                     </td>
                 </tr>
             </table>

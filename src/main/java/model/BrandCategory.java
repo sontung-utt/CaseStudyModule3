@@ -2,58 +2,40 @@ package model;
 
 public class BrandCategory {
     private int id;
-    private int idBrand;
-    private int idCategory;
-    private String brandName;
-    private String categoryName;
+    private Category category;
+    private Brand brand;
 
     public BrandCategory() {
     }
 
-    public BrandCategory(int idBrand, int idCategory) {
-        this.idBrand = idBrand;
-        this.idCategory = idCategory;
+    public BrandCategory(Brand brand, Category category) {
+        this.brand = brand;
+        this.category = category;
     }
 
-    public BrandCategory(int id, int idBrand, int idCategory) {
+    public BrandCategory(int id, Category category, Brand brand) {
         this.id = id;
-        this.idBrand = idBrand;
-        this.idCategory = idCategory;
+        this.category = category;
+        this.brand = brand;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getIdBrand() {
-        return idBrand;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setIdBrand(int idBrand) {
-        this.idBrand = idBrand;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }
