@@ -29,6 +29,7 @@ public class BrandController extends HttpServlet {
                 break;
             case "edit":
                 showFormEdit(req, resp);
+                break;
             case "delete":
                 deleteBrand(req, resp);
                 break;
