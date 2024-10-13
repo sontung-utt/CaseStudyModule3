@@ -114,7 +114,7 @@ button:hover {
     background-color: darkgreen;
 }
 
-a {
+.form a {
     text-decoration: none;
     color: white;
 }

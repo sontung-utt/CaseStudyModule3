@@ -2,10 +2,23 @@ package model;
 
 public class BrandCategory {
     private int id;
+    private int idCategory;
+    private int idBrand;
     private Category category;
     private Brand brand;
 
     public BrandCategory() {
+    }
+
+    public BrandCategory(int idCategory, int idBrand) {
+        this.idCategory = idCategory;
+        this.idBrand = idBrand;
+    }
+
+    public BrandCategory(int id, int idCategory, int idBrand) {
+        this.id = id;
+        this.idCategory = idCategory;
+        this.idBrand = idBrand;
     }
 
     public BrandCategory(Brand brand, Category category) {
@@ -21,6 +34,22 @@ public class BrandCategory {
 
     public int getId() {
         return id;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public int getIdBrand() {
+        return idBrand;
+    }
+
+    public void setIdBrand(int idBrand) {
+        this.idBrand = idBrand;
     }
 
     public Category getCategory() {

@@ -25,6 +25,9 @@ public class BrandCategoryController extends HttpServlet {
             case "home":
                 showAll(req, resp);
                 break;
+            case "add":
+                showFormAdd(req, resp);
+                break;
         }
     }
 
@@ -32,6 +35,11 @@ public class BrandCategoryController extends HttpServlet {
         List<BrandCategory> list = brandCategoryIService.getAll();
         RequestDispatcher dispatcher = req.getRequestDispatcher("/brand_category/brand_category.jsp");
         req.setAttribute("list",list);
+        dispatcher.forward(req, resp);
+    }
+
+    public void showFormAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/brand_category/addBrandCategory.jsp");
         dispatcher.forward(req, resp);
     }
 
