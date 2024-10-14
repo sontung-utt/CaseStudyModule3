@@ -104,4 +104,27 @@ public class CategoryService implements IService<Category>{
         }
         return categoryList;
     }
+
+    public List<Category> getCategoryByBrand(int idBrand){
+        List<Category> categories = new ArrayList<>();
+        String sql = "select a.* from category a\n" +
+                "join brandcategory b on a.id = b.idCategory\n" +
+                "where b.idBrand = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idBrand);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String image = resultSet.getString("image");
+                Category category = new Category(id, name, image);
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return categories;
+    }
 }

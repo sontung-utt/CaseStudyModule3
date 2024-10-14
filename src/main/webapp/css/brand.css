@@ -44,6 +44,10 @@
     height: 100%;
 }
 
+.form-category .search form {
+    width: 150px;
+}
+
 table {
     width: 100%;
 }

@@ -122,13 +122,16 @@
                 <div class="search">
                     <div class="select-input">
                         <h4>Chọn loại sản phẩm</h4>
-                        <select name="idCategory" id="idCategory">
-                            <c:forEach var="item" items="${categoryList}">
-                                <option value="${item.id}">
-                                    ${item.name}
-                                </option>
-                            </c:forEach>
-                        </select>
+                        <form action="categories" method="get">
+                            <input type="hidden" name="action" value="category">
+                            <select name="idCategory" id="idCategory" onchange="this.form.submit()">
+                                <c:forEach var="item" items="${categoryList}">
+                                    <option value="${item.id}" ${param.idCategory == item.id ? 'selected' : ''}>
+                                            ${item.name}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </form>
                     </div>
                 </div>
                 <div class="list-brand">
@@ -139,12 +142,14 @@
                             <th>Tên thương hiệu</th>
                             <th>Hình ảnh</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td><img src="image/hot-product-2.jpg" alt=""></td>
-                        </tr>
+                        <c:forEach var="item" items="${brands}" varStatus="loop">
+                            <tr>
+                                <td>${loop.index + 1}</td>
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <td><img src="${item.image}" alt=""></td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>

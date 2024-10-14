@@ -1,7 +1,11 @@
 package controller;
 
+import model.Brand;
 import model.BrandCategory;
+import model.Category;
 import service.BrandCategoryService;
+import service.BrandService;
+import service.CategoryService;
 import service.IService;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +21,8 @@ import java.util.List;
 @WebServlet(name = "BrandCategoryController", value = "/brand_category")
 public class BrandCategoryController extends HttpServlet {
     private final IService<BrandCategory> brandCategoryIService = new BrandCategoryService();
+    private final IService<Brand> brandIService = new BrandService();
+    private final IService<Category> categoryIService = new CategoryService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,7 +45,11 @@ public class BrandCategoryController extends HttpServlet {
     }
 
     public void showFormAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Brand> brandList = brandIService.getAll();
+        List<Category> categoryList = categoryIService.getAll();
         RequestDispatcher dispatcher = req.getRequestDispatcher("/brand_category/addBrandCategory.jsp");
+        req.setAttribute("brandList",brandList);
+        req.setAttribute("categoryList",categoryList);
         dispatcher.forward(req, resp);
     }
 

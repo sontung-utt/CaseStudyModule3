@@ -121,13 +121,16 @@
                 <div class="search">
                     <div class="select-input">
                         <h4>Chọn thương hiệu</h4>
-                        <select name="idBrand" id="idBrand">
-                            <c:forEach var="item" items="${brandList}">
-                                <option value="${item.id}">
-                                    ${item.name}
-                                </option>
-                            </c:forEach>
-                        </select>
+                        <form action="brands" method="get">
+                            <input type="hidden" name="action" value="brand">
+                            <select name="idBrand" id="idBrand" onchange="this.form.submit()">
+                                <c:forEach var="item" items="${brandList}">
+                                    <option value="${item.id}" ${param.idBrand == item.id ? 'selected' : ''}>
+                                            ${item.name}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </form>
                     </div>
                 </div>
                 <div class="list-category">
@@ -138,12 +141,14 @@
                             <th>Tên loại sản phẩm</th>
                             <th>Hình ảnh</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td><img src="image/hot-product-2.jpg" alt=""></td>
-                        </tr>
+                        <c:forEach var="item" items="${categories}" varStatus="loop">
+                            <tr>
+                                <td>${loop.index + 1}</td>
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <td><img src="${item.image}" alt=""></td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>

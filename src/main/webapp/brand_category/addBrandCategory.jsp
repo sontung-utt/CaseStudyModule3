@@ -80,7 +80,9 @@
                     </td>
                     <td>
                         <select id="idCategoryBrand" name="idCategoryBrand">
-                            <option value="Java">Java</option>
+                            <c:forEach var="item" items="${categoryList}">
+                                <option value="${item.id}">${item.name}</option>
+                            </c:forEach>
                         </select>
                     </td>
                 </tr>
@@ -91,7 +93,9 @@
                     </td>
                     <td>
                         <select id="idBrandCategory" name="idBrandCategory">
-                            <option value="Java">Java</option>
+                            <c:forEach var="item" items="${brandList}">
+                                <option value="${item.id}">${item.name}</option>
+                            </c:forEach>
                         </select>
                     </td>
                 </tr>

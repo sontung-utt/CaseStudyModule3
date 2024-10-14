@@ -1,6 +1,10 @@
 package controller;
 
+import model.Brand;
+import model.BrandCategory;
 import model.Category;
+import service.BrandCategoryService;
+import service.BrandService;
 import service.CategoryService;
 import service.IService;
 
@@ -16,6 +20,7 @@ import java.util.List;
 @WebServlet(name="CategoryController", value = "/categories")
 public class CategoryController extends HttpServlet {
     private final IService<Category> categoryIService = new CategoryService();
+    private final BrandService brandService = new BrandService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -42,8 +47,12 @@ public class CategoryController extends HttpServlet {
 
     public void showCategory(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Category> categoryList = categoryIService.getAll();
+        String idCategoryParam = req.getParameter("idCategory");
+        int idCategory = idCategoryParam != null ? Integer.parseInt(idCategoryParam) : categoryList.get(0).getId();
+        List<Brand> brands = brandService.getBrandByCategory(idCategory);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/brand_category/category.jsp");
         req.setAttribute("categoryList",categoryList);
+        req.setAttribute("brands",brands);
         dispatcher.forward(req, resp);
     }
 
