@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value='/css/addBrandCategory.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/addBrandCategory.css?v=1.0'/>">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,7 +68,12 @@
         </div>
     </div>
     <div class="form">
-        <form action="" method="post">
+        <% if (request.getAttribute("errorMessage") != null) { %>
+        <div class="error-message">
+            <p><%= request.getAttribute("errorMessage") %></p>
+        </div>
+        <% } %>
+        <form action="http://localhost:8080/brand_category?action=add" method="post">
             <table border="1">
                 <tr>
                     <th colspan="2">THÊM MỚI LOẠI SẢN PHẨM - THƯƠNG HIỆU</th>
@@ -76,10 +81,10 @@
                 <tr>
                     <td class="info">
                         <i class="fa-solid fa-box-archive"></i>
-                        <label for="idCategoryBrand">Loại sản phẩm</label>
+                        <label for="idCategory">Loại sản phẩm</label>
                     </td>
                     <td>
-                        <select id="idCategoryBrand" name="idCategoryBrand">
+                        <select id="idCategory" name="idCategory">
                             <c:forEach var="item" items="${categoryList}">
                                 <option value="${item.id}">${item.name}</option>
                             </c:forEach>
@@ -89,10 +94,10 @@
                 <tr>
                     <td class="info">
                         <i class="fa-solid fa-box-archive"></i>
-                        <label for="idBrandCategory">Thương hiệu</label>
+                        <label for="idBrand">Thương hiệu</label>
                     </td>
                     <td>
-                        <select id="idBrandCategory" name="idBrandCategory">
+                        <select id="idBrand" name="idBrand">
                             <c:forEach var="item" items="${brandList}">
                                 <option value="${item.id}">${item.name}</option>
                             </c:forEach>

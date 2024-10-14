@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value='/css/addProduct.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/addProduct.css?v=1.0'/>">
     <title>Form thêm mới</title>
 </head>
 <body>
@@ -25,19 +25,19 @@
     <div class="header-form">
 
         <div class="item-header">
-            <a href="">
+            <a href="http://localhost:8080/products?action=product">
                 <i class="fa-solid fa-box-open"></i>
                 <p>Quản lý sản phẩm</p>
             </a>
         </div>
         <div class="item-header">
-            <a href="">
+            <a href="http://localhost:8080/categories?action=category">
                 <i class="fa-solid fa-box-archive"></i>
                 <p>Quản lý loại sản phẩm</p>
             </a>
         </div>
         <div class="item-header">
-            <a href="">
+            <a href="http://localhost:8080/brands?action=brand">
                 <i class="fa-solid fa-tag"></i>
                 <p>Quản lý thương hiệu</p>
             </a>
@@ -68,7 +68,12 @@
         </div>
     </div>
     <div class="form">
-        <form action="" method="post">
+        <% if (request.getAttribute("errorMessage") != null) { %>
+        <div class="error-message">
+            <p><%= request.getAttribute("errorMessage") %></p>
+        </div>
+        <% } %>
+        <form action="http://localhost:8080/products?action=add" method="post">
             <table border="1">
                 <tr>
                     <th colspan="2">THÊM MỚI SẢN PHẨM</th>
@@ -108,7 +113,9 @@
                     </td>
                     <td>
                         <select id="idBrandCategory" name="idBrandCategory">
-                            <option value="Java">Java</option>
+                            <c:forEach var="item" items="${list}">
+                                <option value="${item.id}">${item.brand.name} - ${item.category.name}</option>
+                            </c:forEach>
                         </select>
                     </td>
                 </tr>

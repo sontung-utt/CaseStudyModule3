@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 10/13/2024
-  Time: 2:32 PM
+  Date: 10/14/2024
+  Time: 12:13 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value='/css/editForm.css?v=1.0'/>">
+    <link rel="stylesheet" href="<c:url value='/css/addBrandCategory.css?v=1.0'/>">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,37 +73,48 @@
             <p><%= request.getAttribute("errorMessage") %></p>
         </div>
         <% } %>
-        <form action="http://localhost:8080/categories?action=edit" method="post">
+        <form action="http://localhost:8080/brand_category?action=edit" method="post">
             <table border="1">
                 <tr>
-                    <th colspan="2">SỬA THÔNG TIN LOẠI SẢN PHẨM</th>
+                    <th colspan="2">SỬA THÔNG TIN LOẠI SẢN PHẨM - THƯƠNG HIỆU</th>
                 </tr>
+
                 <tr>
                     <td class="info">
                         <i class="fa-solid fa-list-ol"></i>
-                        <label for="id">Mã loại sản phẩm</label>
+                        <label for="id">Mã loại</label>
                     </td>
-                    <td><input type="text" name="id" id="id" value="${category.id}" readonly></td>
+                    <td><input type="text" name="id" id="id" value="${brandCategory.id}" readonly></td>
                 </tr>
+
                 <tr>
                     <td class="info">
-                        <i class="fa-solid fa-gamepad"></i>
-                        <label for="name">Tên loại sản phẩm</label>
+                        <i class="fa-solid fa-box-archive"></i>
+                        <label for="idCategory">Loại sản phẩm</label>
                     </td>
-                    <td><input type="text" name="name" id="name" value="${category.name}"></td>
+                    <td>
+                        <select id="idCategory" name="idCategory">
+                            <c:forEach var="item" items="${categoryList}">
+                                <option value="${item.id}" <c:if test="${item.id == brandCategory.idCategory}">selected</c:if>>${item.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
+
                 <tr>
                     <td class="info">
-                        <i class="fa-regular fa-image"></i>
-                        <label for="image">Hình ảnh</label>
+                        <i class="fa-solid fa-box-archive"></i>
+                        <label for="idBrand">Thương hiệu</label>
                     </td>
-                    <td><input type="text" name="image" id="image" value="${category.image}"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <img src="${category.image}" alt="">
+                    <td>
+                        <select id="idBrand" name="idBrand">
+                            <c:forEach var="item" items="${brandList}">
+                                <option value="${item.id}" <c:if test="${item.id == brandCategory.idBrand}">selected</c:if>>${item.name}</option>
+                            </c:forEach>
+                        </select>
                     </td>
                 </tr>
+
                 <tr>
                     <td colspan="2" class="tdbtn">
                         <a href=""><button>Sửa thông tin</button></a>

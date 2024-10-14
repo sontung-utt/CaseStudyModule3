@@ -19,6 +19,7 @@ import java.util.List;
 public class BrandController extends HttpServlet {
     private final IService<Brand> brandIService = new BrandService();
     private final CategoryService categoryService = new CategoryService();
+    private final BrandService brandService = new BrandService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -84,6 +85,11 @@ public class BrandController extends HttpServlet {
     public void addBrand(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String image = req.getParameter("image");
+        if (brandService.existBrandName(name)){
+            req.setAttribute("errorMessage", "Thương hiệu đã tồn tại!");
+            showFormAdd(req, resp);
+            return;
+        }
         Brand newBrand = new Brand(name,image);
         brandIService.add(newBrand);
         resp.sendRedirect("/brands?action=brand");
@@ -93,6 +99,14 @@ public class BrandController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String image = req.getParameter("image");
+        Brand existBrand = brandIService.findById(id);
+        if(!existBrand.getName().equals(name)){
+            if (brandService.existBrandName(name)){
+                req.setAttribute("errorMessage", "Thương hiệu đã tồn tại!");
+                showFormEdit(req, resp);
+                return;
+            }
+        }
         Brand newBrand = new Brand(id,name,image);
         brandIService.update(id,newBrand);
         resp.sendRedirect("/brands?action=brand");

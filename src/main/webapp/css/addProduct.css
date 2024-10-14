@@ -124,3 +124,11 @@ button:hover {
     text-align: center;
 }
 
+.form img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 180px;
+}
+

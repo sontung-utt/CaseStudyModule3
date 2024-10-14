@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<c:url value='/css/product.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/product.css?v=1.0'/>">
     <title>Thông tin sản phẩm</title>
 </head>
 <body>
@@ -107,18 +107,18 @@
                 </tr>
                 <c:forEach var="item" items="${productList}" varStatus="loop">
                     <tr>
-                        <td>${loop.index + 1}</td>
-                        <td>${item.id}</td>
-                        <td>${item.name}</td>
-                        <td>${item.price}</td>
-                        <td>${item.quantity}</td>
-                        <td><img src="${item.image}" alt=""></td>
-                        <td>${item.categoryName}</td>
-                        <td>${item.brandName}</td>
-                        <td>${item.description}</td>
-                        <td>
-                            <button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button>
+                        <td class="small">${loop.index + 1}</td>
+                        <td class="medium">${item.id}</td>
+                        <td class="medium">${item.name}</td>
+                        <td class="medium">${item.price}</td>
+                        <td class="medium">${item.quantity}</td>
+                        <td class="medium"><img src="${item.image}" alt=""></td>
+                        <td class="medium">${item.categoryName}</td>
+                        <td class="medium">${item.brandName}</td>
+                        <td class="large">${item.description}</td>
+                        <td class="medium">
+                            <a href="http://localhost:8080/products?action=edit&id=${item.id}"><button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                            <a href="http://localhost:8080/products?action=delete&id=${item.id}"><button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button></a>
                         </td>
                     </tr>
                 </c:forEach>

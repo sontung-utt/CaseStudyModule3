@@ -21,6 +21,7 @@ import java.util.List;
 public class CategoryController extends HttpServlet {
     private final IService<Category> categoryIService = new CategoryService();
     private final BrandService brandService = new BrandService();
+    private final CategoryService categoryService = new CategoryService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -86,6 +87,11 @@ public class CategoryController extends HttpServlet {
     public void addCategory(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         String image = req.getParameter("image");
+        if (categoryService.existCategoryName(name)){
+            req.setAttribute("errorMessage", "Loại sản phẩm đã tồn tại!");
+            showFormAdd(req, resp);
+            return;
+        }
         Category newCategory = new Category(name, image);
         categoryIService.add(newCategory);
         resp.sendRedirect("/categories?action=category");
@@ -95,6 +101,14 @@ public class CategoryController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         String image = req.getParameter("image");
+        Category existCategory = categoryIService.findById(id);
+        if (!existCategory.getName().equals(name)) {
+            if (categoryService.existCategoryName(name)){
+                req.setAttribute("errorMessage", "Loại sản phẩm đã tồn tại!");
+                showFormEdit(req, resp);
+                return;
+            }
+        }
         Category newCategory = new Category(id,name,image);
         categoryIService.update(id,newCategory);
         resp.sendRedirect("/categories?action=category");

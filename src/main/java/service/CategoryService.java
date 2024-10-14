@@ -127,4 +127,20 @@ public class CategoryService implements IService<Category>{
         }
         return categories;
     }
+
+    public boolean existCategoryName(String name){
+        String sql = "select count(*) from category where name = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
 }

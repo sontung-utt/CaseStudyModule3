@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<c:url value='/css/category.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/category.css?v=1.0'/>">
 
     <title>Document</title>
 </head>

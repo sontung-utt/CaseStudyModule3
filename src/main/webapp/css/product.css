@@ -197,8 +197,20 @@ th, td {
 }
 
 img {
+    width: 140px;
+    height: 150px;
+}
+
+.small {
+    width: 60px;
+}
+
+.medium {
     width: 150px;
-    height: 100px;
+}
+
+.large {
+    width: 300px;
 }
 
 th {
@@ -206,11 +218,11 @@ th {
 }
 
 .info-product tr:nth-child(even) {
-    background-color: bisque;
+    background-color: rgb(246, 155, 155);
 }
 
 .info-product tr:nth-child(odd) {
-    background-color: burlywood;
+    background-color: rgb(228, 100, 100);
 }
 
 .info-product i {

@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value='/css/editForm.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/editForm.css?v=1.0'/>">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,6 +68,11 @@
         </div>
     </div>
     <div class="form">
+        <% if (request.getAttribute("errorMessage") != null) { %>
+        <div class="error-message">
+            <p><%= request.getAttribute("errorMessage") %></p>
+        </div>
+        <% } %>
         <form action="http://localhost:8080/brands?action=edit" method="post">
             <table border="1">
                 <tr>
