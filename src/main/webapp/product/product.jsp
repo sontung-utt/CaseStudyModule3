@@ -71,6 +71,13 @@
     <div class="main-info">
         <div class="top-frame">
             <div class="account"></div>
+            <a href="http://localhost:8080/logout">
+                <div class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Đăng xuất</p>
+                </div>
+            </a>
+
         </div>
         <div class="search">
             <div class="add-button">

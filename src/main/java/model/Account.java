@@ -1,25 +1,39 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Account {
     private int id;
     private String username;
     private String password;
     private int idRole;
+    private LocalDateTime created_at;
+    private LocalDateTime modified_at;
 
     public Account() {
     }
 
-    public Account(String username, String password, int idRole) {
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Account(String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at) {
         this.username = username;
         this.password = password;
         this.idRole = idRole;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
     }
 
-    public Account(int id, String username, String password, int idRole) {
+    public Account(int id, String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.idRole = idRole;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
     }
 
     public int getId() {
@@ -48,5 +62,21 @@ public class Account {
 
     public void setIdRole(int idRole) {
         this.idRole = idRole;
+    }
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public LocalDateTime getModified_at() {
+        return modified_at;
+    }
+
+    public void setModified_at(LocalDateTime modified_at) {
+        this.modified_at = modified_at;
     }
 }
