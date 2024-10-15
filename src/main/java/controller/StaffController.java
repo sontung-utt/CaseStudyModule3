@@ -24,10 +24,11 @@ public class StaffController extends HttpServlet {
     StaffService staffService = new StaffService();
     IService<Department> departmentIService = new DepartmentService();
     AccountService accountService = new AccountService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        switch (action){
+        switch (action) {
             case "staff":
                 showStaff(req, resp);
                 break;
@@ -45,7 +46,7 @@ public class StaffController extends HttpServlet {
 
     public void showStaff(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Staff> staffList = staffIService.getAll();
-        if(staffList.isEmpty()){
+        if (staffList.isEmpty()) {
             req.setAttribute("errorMessage", "Hiện tại không có nhân sự nào.");
             req.setAttribute("staffList", staffList);
         } else {
@@ -57,19 +58,19 @@ public class StaffController extends HttpServlet {
 
     public void showFormAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Department> departmentList = departmentIService.getAll();
-        req.setAttribute("departmentList",departmentList);
+        req.setAttribute("departmentList", departmentList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/staff/add.jsp");
-        dispatcher.forward(req,resp);
+        dispatcher.forward(req, resp);
     }
 
     public void showFormEdit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idEdit = Integer.parseInt(req.getParameter("id"));
         Staff staff = staffService.findById(idEdit);
         List<Department> departmentList = departmentIService.getAll();
-        req.setAttribute("departmentList",departmentList);
-        req.setAttribute("staff",staff);
+        req.setAttribute("departmentList", departmentList);
+        req.setAttribute("staff", staff);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/staff/edit.jsp");
-        requestDispatcher.forward(req,resp);
+        requestDispatcher.forward(req, resp);
     }
 
     public void deleteStaff(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -81,7 +82,7 @@ public class StaffController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        switch (action){
+        switch (action) {
             case "add":
                 addStaff(req, resp);
                 break;
@@ -103,37 +104,37 @@ public class StaffController extends HttpServlet {
         double salary = Double.parseDouble(req.getParameter("salary"));
         int idDepartment = Integer.parseInt(req.getParameter("idDepartment"));
 
-        if (staffService.checkExistPhone(phone)){
+        if (staffService.checkExistPhone(phone)) {
             req.setAttribute("errorMessage", "Số điện thoại đã được sử dụng!");
             showFormAdd(req, resp);
             return;
         }
-        if (staffService.checkExistEmail(email)){
+        if (staffService.checkExistEmail(email)) {
             req.setAttribute("errorMessage", "Email đã được sử dụng!");
             showFormAdd(req, resp);
             return;
         }
-        if (!staffService.checkValidatePhone(phone)){
+        if (!staffService.checkValidatePhone(phone)) {
             req.setAttribute("errorMessage", "Số địện thoại nhập không đúng định dạng!");
             showFormAdd(req, resp);
             return;
         }
-        if (!staffService.checkValidateEmail(email)){
+        if (!staffService.checkValidateEmail(email)) {
             req.setAttribute("errorMessage", "Email nhập không đúng định dạng!");
             showFormAdd(req, resp);
             return;
         }
-        if (staffService.checkExistUserId(userId)){
+        if (staffService.checkExistUserId(userId)) {
             req.setAttribute("errorMessage", "Mã tài khoản đã được sử dụng!");
             showFormAdd(req, resp);
             return;
         }
-        if(!accountService.existAccount(userId)){
+        if (!accountService.existAccount(userId)) {
             req.setAttribute("errorMessage", "Mã tài khoản không tồn tại!");
             showFormAdd(req, resp);
             return;
         }
-        Staff staff = new Staff(name,age,gender,address,phone,email,userId,image,salary,idDepartment);
+        Staff staff = new Staff(name, age, gender, address, phone, email, userId, image, salary, idDepartment);
         staffIService.add(staff);
         resp.sendRedirect("/staff?action=staff");
     }
@@ -152,47 +153,47 @@ public class StaffController extends HttpServlet {
         int idDepartment = Integer.parseInt(req.getParameter("idDepartment"));
         Staff existStaff = staffIService.findById(id);
 
-        if (!existStaff.getPhone().equals(phone)){
-            if (staffService.checkExistPhone(phone)){
+        if (!existStaff.getPhone().equals(phone)) {
+            if (staffService.checkExistPhone(phone)) {
                 req.setAttribute("errorMessage", "Số điện thoại đã được sử dụng!");
                 showFormEdit(req, resp);
                 return;
             }
-            if (!staffService.checkValidatePhone(phone)){
+            if (!staffService.checkValidatePhone(phone)) {
                 req.setAttribute("errorMessage", "Số điện thoại nhập không đúng định dạng!");
                 showFormEdit(req, resp);
                 return;
             }
         }
 
-        if (!existStaff.getEmail().equals(email)){
-            if (staffService.checkExistEmail(email)){
+        if (!existStaff.getEmail().equals(email)) {
+            if (staffService.checkExistEmail(email)) {
                 req.setAttribute("errorMessage", "Email đã được sử dụng!");
                 showFormEdit(req, resp);
                 return;
             }
 
-            if (!staffService.checkValidateEmail(email)){
+            if (!staffService.checkValidateEmail(email)) {
                 req.setAttribute("errorMessage", "Email nhập không đúng định dạng!");
                 showFormEdit(req, resp);
                 return;
             }
         }
 
-        if (existStaff.getUserId()!=userId){
-            if (staffService.checkExistUserId(userId)){
+        if (existStaff.getUserId() != userId) {
+            if (staffService.checkExistUserId(userId)) {
                 req.setAttribute("errorMessage", "Mã tài khoản đã được sử dụng!");
                 showFormEdit(req, resp);
                 return;
             }
-            if(!accountService.existAccount(userId)){
+            if (!accountService.existAccount(userId)) {
                 req.setAttribute("errorMessage", "Mã tài khoản không tồn tại!");
                 showFormAdd(req, resp);
                 return;
             }
         }
-        Staff staff = new Staff(id,name,age,gender,address,phone,email,userId,image,salary,idDepartment);
-        staffIService.update(id,staff);
+        Staff staff = new Staff(id, name, age, gender, address, phone, email, userId, image, salary, idDepartment);
+        staffIService.update(id, staff);
         resp.sendRedirect("/staff?action=staff");
     }
 }

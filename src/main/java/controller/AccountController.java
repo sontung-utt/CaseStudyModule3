@@ -131,7 +131,13 @@ public class AccountController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        int idRole = Integer.parseInt(req.getParameter("idRole"));
+        String idRoleParam = req.getParameter("idRole");
+        int idRole;
+        if (idRoleParam == null || idRoleParam.isEmpty()){
+            idRole = roleIService.getAll().get(0).getId();
+        } else {
+            idRole = Integer.parseInt(idRoleParam);
+        }
         Account existAccount = accountIService.findById(id);
         if(!existAccount.getUsername().equals(username)){
             if(accountService.existAccountName(username)){

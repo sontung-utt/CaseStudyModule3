@@ -1,8 +1,10 @@
 package controller;
 
 import model.Department;
+import model.Staff;
 import service.DepartmentService;
 import service.IService;
+import service.StaffService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +19,7 @@ import java.util.List;
 public class DepartmentController extends HttpServlet {
     IService<Department> departmentIService = new DepartmentService();
     DepartmentService departmentService = new DepartmentService();
+    StaffService staffService = new StaffService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -44,6 +47,8 @@ public class DepartmentController extends HttpServlet {
         } else {
             String idDepartmentParam = req.getParameter("idDepartment");
             int idDepartment = idDepartmentParam != null ? Integer.parseInt(idDepartmentParam) : departmentList.get(0).getId();
+            List<Staff> staffs = staffService.listStaffByDepartment(idDepartment);
+            req.setAttribute("staffs",staffs);
             req.setAttribute("departmentList",departmentList);
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/department/department.jsp");

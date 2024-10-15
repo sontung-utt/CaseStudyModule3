@@ -126,11 +126,17 @@
                 <div class="search">
                     <div class="select-input">
                         <h4>Chọn phòng ban</h4>
-                        <select name="idDepartment" id="idDepartment">
-                            <c:forEach var="item" items="${departmentList}">
-                                <option value="${item.id}">${item.name}</option>
-                            </c:forEach>
-                        </select>
+                        <form action="departments" method="get">
+                            <input type="hidden" name="action" value="department">
+                            <select name="idDepartment" id="idDepartment" onchange="this.form.submit()">
+                                <c:forEach var="item" items="${departmentList}">
+                                    <option value="${item.id}" ${param.idDepartment == item.id ? 'selected' : ''}>
+                                            ${item.name}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </form>
+
                     </div>
                 </div>
                 <div class="list-staff">
@@ -143,14 +149,16 @@
                             <th>Số điện thoại</th>
                             <th>Email</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td>Trần Sơn Tùng</td>
-                            <td><img src="image/hot-product-2.jpg" alt=""></td>
-                            <td>0123456789</td>
-                            <td>sontungtst0411@gmail.com</td>
-                        </tr>
+                        <c:forEach var="item" items="${staffs}" varStatus="loop">
+                            <tr>
+                                <td>${loop.index + 1}</td>
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <td><img src="${item.image}" alt=""></td>
+                                <td>${item.phone}</td>
+                                <td>${item.email}</td>
+                            </tr>
+                        </c:forEach>
 
                     </table>
                 </div>

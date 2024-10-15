@@ -8,8 +8,8 @@ public class Account {
     private String username;
     private String password;
     private int idRole;
-    private LocalDateTime created_at;
-    private LocalDateTime modified_at;
+    private String created_at;
+    private String modified_at;
     private String roleName;
 
     public Account() {
@@ -20,7 +20,7 @@ public class Account {
         this.password = password;
     }
 
-    public Account(String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at) {
+    public Account(String username, String password, int idRole, String created_at, String modified_at) {
         this.username = username;
         this.password = password;
         this.idRole = idRole;
@@ -28,7 +28,7 @@ public class Account {
         this.modified_at = modified_at;
     }
 
-    public Account(int id, String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at) {
+    public Account(int id, String username, String password, int idRole, String created_at, String modified_at) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -44,7 +44,7 @@ public class Account {
         this.idRole = idRole;
     }
 
-    public Account(String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at, String roleName) {
+    public Account(String username, String password, int idRole, String created_at, String modified_at, String roleName) {
         this.username = username;
         this.password = password;
         this.idRole = idRole;
@@ -53,7 +53,7 @@ public class Account {
         this.roleName = roleName;
     }
 
-    public Account(int id, String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at, String roleName) {
+    public Account(int id, String username, String password, int idRole, String created_at, String modified_at, String roleName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -91,19 +91,19 @@ public class Account {
         this.idRole = idRole;
     }
 
-    public LocalDateTime getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDateTime getModified_at() {
+    public String getModified_at() {
         return modified_at;
     }
 
-    public void setModified_at(LocalDateTime modified_at) {
+    public void setModified_at(String modified_at) {
         this.modified_at = modified_at;
     }
 

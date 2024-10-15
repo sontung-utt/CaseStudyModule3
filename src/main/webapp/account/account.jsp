@@ -107,7 +107,7 @@
                     <tr>
                         <td class="small">${loop.index + 1}</td>
                         <td class="medium">${item.id}</td>
-                        <td class="medium">${item.name}</td>
+                        <td class="medium">${item.username}</td>
                         <td class="medium">${item.roleName}</td>
                         <td class="medium">${item.password}</td>
                         <td class="large">${item.created_at}</td>

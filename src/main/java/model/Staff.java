@@ -11,6 +11,12 @@ public class Staff extends User{
     public Staff() {
     }
 
+    public Staff( int id, String name, String image, String phone, String email) {
+        super(name, phone, email);
+        this.id = id;
+        this.image = image;
+    }
+
     public Staff(String name, int age, String gender, String address, String phone, String email, int userId, String image, double salary, int idDepartment) {
         super(name, age, gender, address, phone, email, userId);
         this.image = image;

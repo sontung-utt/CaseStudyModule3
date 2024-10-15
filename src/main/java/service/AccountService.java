@@ -13,6 +13,7 @@ import java.util.List;
 
 public class AccountService implements IService<Account>{
     private final Connection connection = ConnectToMySQL.getConnection();
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     public AccountService(){
 
     }
@@ -83,7 +84,9 @@ public class AccountService implements IService<Account>{
                 String password = resultSet.getString("password");
                 LocalDateTime created_at = resultSet.getTimestamp("created_at").toLocalDateTime();
                 LocalDateTime modified_at = resultSet.getTimestamp("modified_at").toLocalDateTime();
-                account = new Account(id,username,password,idRole,created_at,modified_at);
+                String formattedCreatedAt = created_at.format(formatter);
+                String formattedModifiedAt = modified_at.format(formatter);
+                account = new Account(id,username,password,idRole,formattedCreatedAt,formattedModifiedAt);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -107,8 +110,10 @@ public class AccountService implements IService<Account>{
                 String password = resultSet.getString("password");
                 LocalDateTime created_at = resultSet.getTimestamp("created_at").toLocalDateTime();
                 LocalDateTime modified_at = resultSet.getTimestamp("modified_at").toLocalDateTime();
+                String formattedCreatedAt = created_at.format(formatter);
+                String formattedModifiedAt = modified_at.format(formatter);
                 String roleName = resultSet.getString("roleName");
-                Account account = new Account(id,username,password,idRole,created_at,modified_at,roleName);
+                Account account = new Account(id,username,password,idRole,formattedCreatedAt,formattedModifiedAt,roleName);
                 accountList.add(account);
             }
         } catch (SQLException e) {

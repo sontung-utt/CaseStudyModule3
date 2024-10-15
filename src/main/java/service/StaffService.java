@@ -204,4 +204,29 @@ public class StaffService implements IService<Staff>{
         String emailRegex = "^[\\w-\\.]+@[\\w-\\.]+\\.[a-zA-Z]{2,6}$";
         return email.matches(emailRegex);
     }
+
+    public List<Staff> listStaffByDepartment(int idDepartment){
+        List<Staff> staffs = new ArrayList<>();
+        String sql = "select a.id as id, a.name as name, a.image as image, a.phone as phone, a.email as email\n" +
+                "from staff a join department b on a.idDepartment = b.id\n" +
+                "where a.idDepartment = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idDepartment);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String image = resultSet.getString("image");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                Staff staff = new Staff(id,name,image,phone,email);
+                staffs.add(staff);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return staffs;
+    }
 }
