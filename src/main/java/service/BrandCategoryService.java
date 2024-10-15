@@ -90,7 +90,7 @@ public class BrandCategoryService implements IService<BrandCategory>{
         String sql = "select a.*, b.name as nameBrand, c.name as nameCategory from brandcategory a\n" +
                 "join brand b on a.idBrand = b.id\n" +
                 "join category c on a.idCategory = c.id\n" +
-                "order by a.id asc";
+                "order by c.name asc";
         try {
             assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
