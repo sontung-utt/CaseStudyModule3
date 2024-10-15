@@ -10,6 +10,7 @@ public class Account {
     private int idRole;
     private LocalDateTime created_at;
     private LocalDateTime modified_at;
+    private String roleName;
 
     public Account() {
     }
@@ -34,6 +35,32 @@ public class Account {
         this.idRole = idRole;
         this.created_at = created_at;
         this.modified_at = modified_at;
+    }
+
+    public Account(int id, String username, String password, int idRole) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.idRole = idRole;
+    }
+
+    public Account(String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at, String roleName) {
+        this.username = username;
+        this.password = password;
+        this.idRole = idRole;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
+        this.roleName = roleName;
+    }
+
+    public Account(int id, String username, String password, int idRole, LocalDateTime created_at, LocalDateTime modified_at, String roleName) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.idRole = idRole;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
+        this.roleName = roleName;
     }
 
     public int getId() {
@@ -78,5 +105,13 @@ public class Account {
 
     public void setModified_at(LocalDateTime modified_at) {
         this.modified_at = modified_at;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }
