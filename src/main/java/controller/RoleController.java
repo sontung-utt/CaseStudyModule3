@@ -1,6 +1,8 @@
 package controller;
 
+import model.Account;
 import model.Role;
+import service.AccountService;
 import service.IService;
 import service.RoleService;
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class RoleController extends HttpServlet {
     IService<Role> roleIService = new RoleService();
     RoleService roleService = new RoleService();
+    AccountService accountService = new AccountService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
@@ -51,6 +54,8 @@ public class RoleController extends HttpServlet {
         } else {
             String idRoleParam = req.getParameter("idRole");
             int idRole = idRoleParam != null ? Integer.parseInt(idRoleParam) : roleList.get(0).getId();
+            List<Account> accounts = accountService.getAccountByRole(idRole);
+            req.setAttribute("accounts", accounts);
             req.setAttribute("roleList",roleList);
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/role/role.jsp");

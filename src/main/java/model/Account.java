@@ -37,6 +37,14 @@ public class Account {
         this.modified_at = modified_at;
     }
 
+    public Account(int id, String username, String password, String created_at, String modified_at) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.created_at = created_at;
+        this.modified_at = modified_at;
+    }
+
     public Account(int id, String username, String password, int idRole) {
         this.id = id;
         this.username = username;

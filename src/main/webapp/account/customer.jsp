@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Admin
   Date: 10/16/2024
-  Time: 3:36 AM
+  Time: 5:33 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<c:url value='/css/account.css?v=1.0'/>">
-    <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" href="<c:url value='/css/customer.css?v=1.0'/>">
+    <title>Thông tin tài khoản khách hàng</title>
 </head>
 <body>
 <div class="container">
@@ -71,12 +71,6 @@
     <div class="main-info">
         <%@ include file="/static/topFrame.jsp" %>
         <div class="search">
-            <div class="add-button">
-                <a href="http://localhost:8080/accounts?action=add">
-                    <i class="fa-solid fa-plus"></i>
-                    <p>Thêm mới</p>
-                </a>
-            </div>
             <div class="sort-area">
 
             </div>
@@ -95,32 +89,27 @@
                     <th>STT</th>
                     <th>Mã tài khoản</th>
                     <th>Tên tài khoản</th>
-                    <th>Chức năng</th>
                     <th>Mật khẩu</th>
                     <th>Ngày tạo</th>
                     <th>Ngày sửa</th>
-                    <th>Hành động</th>
                 </tr>
                 <c:if test="${not empty errorMessage}">
                     <div class="error-message">
                         <p>${errorMessage}</p>
                     </div>
                 </c:if>
-                <c:forEach var="item" items="${accountList}" varStatus="loop">
+                <c:forEach var="item" items="${list}" varStatus="loop">
                     <tr>
                         <td class="small">${loop.index + 1}</td>
                         <td class="medium">${item.id}</td>
                         <td class="medium">${item.username}</td>
-                        <td class="medium">${item.roleName}</td>
                         <td class="medium">${item.password}</td>
                         <td class="large">${item.created_at}</td>
                         <td class="large">${item.modified_at}</td>
-                        <td class="medium">
-                            <a href="http://localhost:8080/accounts?action=edit&id=${item.id}"><button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                            <a href="http://localhost:8080/accounts?action=delete&id=${item.id}"><button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button></a>
-                        </td>
+
                     </tr>
                 </c:forEach>
+
 
             </table>
         </div>

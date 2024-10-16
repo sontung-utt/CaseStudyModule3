@@ -119,34 +119,33 @@
     background-color: rgb(211, 76, 76);
 }
 
+/**/
+
 .container {
     display: flex;
-    flex-wrap: wrap;
     position: relative;
 }
 
 .main-info {
     width: calc(100% - 275px);
-    height: 720px;
+    height: 660px;
     margin-left: 275px;
 }
 
-.main-info .info {
+.top-frame {
+    width: calc(100% - 275px);
+    left: 275px;
+    height: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    position: fixed;
+    z-index: 10;
+}
+
+.main-info .info-product {
     width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
-}
-
-.main-info .form-account {
-    width: 65%;
     height: 100%;
-}
-
-.main-info .form-role {
-    width: 35%;
-    height: 100%;
+    margin-top: 10px;
 }
 
 table {
@@ -155,14 +154,15 @@ table {
 
 th {
     font-size: 16px;
+    padding: 4px;
 }
 
 td {
-    font-size: 15px;
+    font-size: 14px;
+    padding: 2px;
 }
 
 th, td {
-    padding: 4px;
     text-align: center;
 }
 
@@ -196,7 +196,7 @@ th, td {
     background-color: rgb(136, 136, 36);
 }
 
-.main-info .info img {
+img {
     width: 120px;
     height: 150px;
 }
@@ -205,29 +205,33 @@ th {
     background-color: rgb(230, 230, 230);
 }
 
+.info-product tr:nth-child(even) {
+    background-color: rgb(246, 155, 155) ;
 
-
-.info tr:nth-child(even) {
-    background-color: lightcyan;
 }
 
-.info tr:nth-child(odd) {
-    background-color: lightblue;
+.info-product tr:nth-child(odd) {
+    background-color: rgb(228, 100, 100);
 }
 
-.form-account .search {
+table i {
+    font-size: 18px;
+}
+
+.search {
     background-color: white;
     position: relative;
     width: 100%;
-    height: 70px;
+    height: 50px;
     z-index: 1;
+    margin-top: 65px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.form-role .search-input {
-    width: 180px;
+.search-input {
+    width: 20%;
     height: 80%;
     border: 1px solid black;
     display: flex;
@@ -241,21 +245,21 @@ th {
     margin-right: 5px;
 }
 
-.form-role .input {
+.search .input {
     width: 90%;
 }
 
 .search .input input {
-    width: 100%;
+    width: 88%;
     height: 30px;
     outline: none;
     font-size: 15px;
     border: none;
 }
 
-.form-role .add-button {
+.search .add-button {
     background-color: lightgreen;
-    width: 100px;
+    width: 120px;
     height: 40px;
     border-radius: 50px;
     display: flex;
@@ -280,31 +284,8 @@ th {
     margin-left: 5px;
 }
 
-.form-account .select-input {
-    width: 30%;
-    height: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-right: 10px;
-}
-
-.search select {
-    width: 150px;
-    height: 30px;
-    outline: none;
-    font-size: 16px;
-    border-radius: 10px;
-}
-
-table i {
-    font-size: 15px;
-}
-
-table a {
-    color: white;
-}
-
-table button {
-    cursor: pointer;
+.search .sort-area {
+    width: 65%;
+    height: 100%;
+    border: 1px solid black;
 }

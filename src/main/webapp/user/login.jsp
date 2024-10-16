@@ -43,7 +43,7 @@
                         <i class="fa-solid fa-user-plus"></i>
                     </div>
                     <div class="item">
-                        <p>Đăng ký tài khoản</p>
+                        <p>Liên hệ quản trị viên</p>
                     </div>
                 </div>
             </a>

@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Admin
   Date: 10/15/2024
-  Time: 11:05 AM
+  Time: 11:04 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,7 +18,7 @@
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<c:url value='/css/login_register.css?v=1.0'/>">
-    <title>Đăng ký</title>
+    <title>Đăng nhập</title>
 </head>
 <body>
 <div class="container">
@@ -38,7 +38,6 @@
                 </div>
             </a>
             <a href="http://localhost:8080/accCustomers?action=register">
-
                 <div class="register">
                     <div class="icon">
                         <i class="fa-solid fa-user-plus"></i>
@@ -54,10 +53,10 @@
         <% if (request.getAttribute("errorMessage") != null) { %>
         <div style="color: red;"><%= request.getAttribute("errorMessage") %></div>
         <% } %>
-        <form action="http://localhost:8080/accCustomers?action=register" method="post">
+        <form action="http://localhost:8080/loginUser" method="post">
             <table border="1">
                 <tr>
-                    <th colspan="2">ĐĂNG KÝ TÀI KHOẢN</th>
+                    <th colspan="2">ĐĂNG NHẬP HỆ THỐNG</th>
                 </tr>
                 <tr>
                     <td class="info">
@@ -73,17 +72,10 @@
                     </td>
                     <td><input type="password" name="password" id="password" required></td>
                 </tr>
-                <tr>
-                    <td class="info">
-                        <i class="fa-solid fa-lock"></i>
-                        <label for="rePassword">Nhập lại mật khẩu</label>
-                    </td>
-                    <td><input type="password" name="rePassword" id="rePassword" required></td>
-                </tr>
 
                 <tr>
                     <td colspan="2" class="tdbtn">
-                        <button type="submit">ĐĂNG KÝ</button>
+                        <button type="submit">ĐĂNG NHẬP</button>
                     </td>
                 </tr>
             </table>

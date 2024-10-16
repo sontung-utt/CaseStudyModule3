@@ -24,4 +24,18 @@ public class UserService {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean checkCustomer(String username, String password) {
+        String sql = "select * from customeraccount where username = ? and password = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

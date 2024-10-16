@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "LoginController", value = "/login")
-public class LoginController extends HttpServlet {
+@WebServlet(name = "LoginCustomerController", value = "/loginUser")
+public class LoginCustomerController extends HttpServlet {
     UserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,37 +22,38 @@ public class LoginController extends HttpServlet {
         } else {
             showFormLogin(req, resp);
         }
+        showFormLogin(req, resp);
     }
 
     public void showFormLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/loginUser.jsp");
         dispatcher.forward(req, resp);
     }
 
     public void showLoginUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String username = (String) session.getAttribute("username");
-        if (username != null){
-            req.setAttribute("username",username);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/static/topFrame.jsp");
+        String customerUserName = (String) session.getAttribute("customerUserName");
+        if (customerUserName != null){
+            req.setAttribute("customerUserName",customerUserName);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/view.jsp");
             dispatcher.forward(req,resp);
         } else {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/loginUser");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        loginStaff(req, resp);
+        loginCustomer(req, resp);
     }
 
-    public void loginStaff(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void loginCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter(("password"));
-        if (userService.checkUser(username,password)){
+        if (userService.checkCustomer(username,password)){
             HttpSession session = req.getSession();
-            session.setAttribute("username", username);
-            resp.sendRedirect("/products?action=product");
+            session.setAttribute("customerUserName", username);
+            resp.sendRedirect("/view");
         } else {
             req.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");
             showFormLogin(req, resp);

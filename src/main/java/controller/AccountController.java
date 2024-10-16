@@ -1,8 +1,10 @@
 package controller;
 
 import model.Account;
+import model.CustomerAccount;
 import model.Role;
 import service.AccountService;
+import service.CustomerAccountService;
 import service.IService;
 import service.RoleService;
 
@@ -22,15 +24,13 @@ public class AccountController extends HttpServlet {
     IService<Account> accountIService = new AccountService();
     AccountService accountService = new AccountService();
     IService<Role> roleIService = new RoleService();
+    IService<CustomerAccount> customerAccountIService = new CustomerAccountService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("username") != null){
             String action = req.getParameter("action");
             switch (action) {
-                case "register":
-                    showFormRegister(req, resp);
-                    break;
                 case "account":
                     showAccount(req, resp);
                     break;
@@ -43,6 +43,9 @@ public class AccountController extends HttpServlet {
                 case "delete":
                     deleteAccount(req, resp);
                     break;
+                case "customer":
+                    showCustomerAccount(req, resp);
+                    break;
             }
         } else {
             resp.sendRedirect("/home?action=staff");
@@ -51,9 +54,26 @@ public class AccountController extends HttpServlet {
 
     public void showAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Account> accountList = accountIService.getAll();
-        req.setAttribute("accountList",accountList);
+        if (accountList.isEmpty()){
+            req.setAttribute("errorMessage", "Hiện tại không có tài khoản nào.");
+            req.setAttribute("accountList", accountList);
+        } else {
+            req.setAttribute("accountList", accountList);
+        }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/account/account.jsp");
         dispatcher.forward(req,resp);
+    }
+
+    public void showCustomerAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<CustomerAccount> list = customerAccountIService.getAll();
+        if (list.isEmpty()){
+            req.setAttribute("errorMessage", "Hiện tại không có tài khoản nào.");
+            req.setAttribute("list", list);
+        } else {
+            req.setAttribute("list", list);
+        }
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/account/customer.jsp");
+        dispatcher.forward(req, resp);
     }
 
     public void showFormAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -71,11 +91,6 @@ public class AccountController extends HttpServlet {
         dispatcher.forward(req,resp);
     }
 
-    public void showFormRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/register.jsp");
-        dispatcher.forward(req, resp);
-    }
-
     public void deleteAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDelete = Integer.parseInt(req.getParameter("id"));
         accountIService.delete(idDelete);
@@ -87,9 +102,6 @@ public class AccountController extends HttpServlet {
 
         String action = req.getParameter("action");
         switch (action) {
-            case "register":
-                register(req, resp);
-                break;
             case "add":
                 addAccount(req, resp);
                 break;
@@ -98,25 +110,6 @@ public class AccountController extends HttpServlet {
                 break;
         }
 
-    }
-
-    public void register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        String rePassword = req.getParameter(("rePassword"));
-        Account account = new Account(username,password);
-        if (accountService.existAccountName(username)){
-            req.setAttribute("errorMessage", "Tài khoản đã tồn tại!");
-            showFormRegister(req, resp);
-            return;
-        }
-        if (!accountService.checkPassword(password,rePassword)){
-            req.setAttribute("errorMessage", "Mật khẩu và Nhập lại mật khẩu phải trùng khớp!");
-            showFormRegister(req, resp);
-            return;
-        }
-        accountService.add(account);
-        resp.sendRedirect("/login");
     }
 
     public void addAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,6 +1,5 @@
 package controller;
 
-import model.Account;
 import model.Department;
 import model.Staff;
 import service.AccountService;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.List;
 
 @WebServlet(name = "StaffController", value = "/staff")
@@ -120,12 +118,12 @@ public class StaffController extends HttpServlet {
             showFormAdd(req, resp);
             return;
         }
-        if (!staffService.checkValidatePhone(phone)) {
+        if (staffService.checkValidatePhone(phone)) {
             req.setAttribute("errorMessage", "Số địện thoại nhập không đúng định dạng!");
             showFormAdd(req, resp);
             return;
         }
-        if (!staffService.checkValidateEmail(email)) {
+        if (staffService.checkValidateEmail(email)) {
             req.setAttribute("errorMessage", "Email nhập không đúng định dạng!");
             showFormAdd(req, resp);
             return;
@@ -135,7 +133,7 @@ public class StaffController extends HttpServlet {
             showFormAdd(req, resp);
             return;
         }
-        if (!accountService.existAccount(userId)) {
+        if (accountService.existAccountId(userId)) {
             req.setAttribute("errorMessage", "Mã tài khoản không tồn tại!");
             showFormAdd(req, resp);
             return;
@@ -165,7 +163,7 @@ public class StaffController extends HttpServlet {
                 showFormEdit(req, resp);
                 return;
             }
-            if (!staffService.checkValidatePhone(phone)) {
+            if (staffService.checkValidatePhone(phone)) {
                 req.setAttribute("errorMessage", "Số điện thoại nhập không đúng định dạng!");
                 showFormEdit(req, resp);
                 return;
@@ -179,7 +177,7 @@ public class StaffController extends HttpServlet {
                 return;
             }
 
-            if (!staffService.checkValidateEmail(email)) {
+            if (staffService.checkValidateEmail(email)) {
                 req.setAttribute("errorMessage", "Email nhập không đúng định dạng!");
                 showFormEdit(req, resp);
                 return;
@@ -192,7 +190,7 @@ public class StaffController extends HttpServlet {
                 showFormEdit(req, resp);
                 return;
             }
-            if (!accountService.existAccount(userId)) {
+            if (accountService.existAccountId(userId)) {
                 req.setAttribute("errorMessage", "Mã tài khoản không tồn tại!");
                 showFormAdd(req, resp);
                 return;

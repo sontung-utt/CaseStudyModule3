@@ -27,7 +27,7 @@
             <img src="image/logo.png" alt="">
         </div>
         <div class="user">
-            <a href="http://localhost:8080/login">
+            <a href="http://localhost:8080/loginUser">
                 <div class="login">
                     <div class="icon">
                         <i class="fa-solid fa-user"></i>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </a>
-            <a href="http://localhost:8080/accounts?action=register">
+            <a href="http://localhost:8080/accCustomers?action=register">
                 <div class="register">
                     <div class="icon">
                         <i class="fa-solid fa-user-plus"></i>
@@ -52,8 +52,8 @@
     <div class="form">
         <h1>CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG!</h1>
         <div class="select">
-            <a href="http://localhost:8080/login"><button>ĐĂNG NHẬP</button></a>
-            <a href="http://localhost:8080/accounts?action=register"><button>ĐĂNG KÝ</button></a>
+            <a href="http://localhost:8080/loginUser"><button>ĐĂNG NHẬP</button></a>
+            <a href="http://localhost:8080/accCustomers?action=register"><button>ĐĂNG KÝ</button></a>
         </div>
     </div>
 </div>

@@ -197,12 +197,12 @@ public class StaffService implements IService<Staff>{
 
     public boolean checkValidatePhone (String phone){
         String phoneRegex = "^(0[3|5|7|8|9])+([0-9]{8})$";
-        return phone.matches(phoneRegex);
+        return !phone.matches(phoneRegex);
     }
 
     public boolean checkValidateEmail (String email) {
         String emailRegex = "^[\\w-\\.]+@[\\w-\\.]+\\.[a-zA-Z]{2,6}$";
-        return email.matches(emailRegex);
+        return !email.matches(emailRegex);
     }
 
     public List<Staff> listStaffByDepartment(int idDepartment){

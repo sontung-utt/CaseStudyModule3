@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -142,7 +141,7 @@ public class AccountService implements IService<Account>{
         return password.equals(rePassword);
     }
 
-    public boolean existAccount(int id){
+    public boolean existAccountId(int id){
         String sql = "select count(*) from accounts where id = ?;";
         try {
             assert connection != null;
@@ -150,11 +149,37 @@ public class AccountService implements IService<Account>{
             preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
-                return resultSet.getInt(1) > 0;
+                return resultSet.getInt(1) <= 0;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
+        return true;
+    }
+
+    public List<Account> getAccountByRole (int idRole){
+        List<Account> accounts = new ArrayList<>();
+        String sql = "select * from accounts a join role b on a.idRole = b. id\n" +
+                "where a.idRole = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idRole);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                LocalDateTime created_at = resultSet.getTimestamp("created_at").toLocalDateTime();
+                LocalDateTime modified_at = resultSet.getTimestamp("modified_at").toLocalDateTime();
+                String formattedCreatedAt = created_at.format(formatter);
+                String formattedModifiedAt = modified_at.format(formatter);
+                Account account = new Account(id, username, password, formattedCreatedAt, formattedModifiedAt);
+                accounts.add(account);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return accounts;
     }
 }

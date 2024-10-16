@@ -122,11 +122,16 @@
                 <div class="search">
                     <div class="select-input">
                         <h4>Chọn chức năng</h4>
-                        <select name="idRole" id="idRole">
-                            <c:forEach var="item" items="${roleList}">
-                                <option value="${item.id}">${item.name}</option>
-                            </c:forEach>
-                        </select>
+                        <form action="role" method="get">
+                            <input type="hidden" name="action" value="role">
+                            <select name="idRole" id="idRole" onchange="this.form.submit()">
+                                <c:forEach var="item" items="${roleList}">
+                                    <option value="${item.id}" ${param.idRole == item.id ? 'selected' : ''}>
+                                            ${item.name}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </form>
                     </div>
                 </div>
                 <div class="list-account">
@@ -138,15 +143,15 @@
                             <th>Ngày tạo</th>
                             <th>Ngày sửa</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Trần Sơn Tùng</td>
-                            <td>yyyyy</td>
-                            <td>0123456789</td>
-                            <td>sontungtst0411@gmail.com</td>
-
-                        </tr>
-
+                        <c:forEach var="item" items = "${accounts}" varStatus="loop">
+                            <tr>
+                                <td>${loop.index + 1}</td>
+                                <td>${item.id}</td>
+                                <td>${item.username}</td>
+                                <td>${item.created_at}</td>
+                                <td>${item.modified_at}</td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>
