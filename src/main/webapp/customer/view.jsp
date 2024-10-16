@@ -483,6 +483,8 @@
     <div class="footer"></div>
 </div>
 </body>
-<script src="js/slide_image.js"></script>
-<script src="js/appear_filter.js"></script>
+<c:url value="/js/slide_image.js" var="myScriptPath" />
+<script src="${myScriptPath}"></script>
+<c:url value="/js/appear_filter.js" var="myScriptPath" />
+<script src="${myScriptPath}"></script>
 </html>
