@@ -85,31 +85,37 @@
                             <i class="fa-solid fa-id-card"></i>
                             <label for="id">Mã tài khoản</label>
                         </td>
-                        <td><input type="text" name="id" id="id" value="${item.id}"></td>
+                        <td><input type="text" name="id" id="id" value="${account.id}" readonly></td>
                     </tr>
                     <tr>
                         <td class="info">
                             <i class="fa-solid fa-circle-user"></i>
                             <label for="username">Tên tài khoản</label>
                         </td>
-                        <td><input type="text" name="username" id="username" value="${item.username}"></td>
+                        <td><input type="text" name="username" id="username" value="${account.username}"></td>
                     </tr>
                     <tr>
                         <td class="info">
                             <i class="fa-solid fa-lock"></i>
                             <label for="password">Mật khẩu</label>
                         </td>
-                        <td><input type="text" name="password" id="password" value="${item.password}"></td>
+                        <td><input type="text" name="password" id="password" value="${account.password}"></td>
                     </tr>
-                    <td>
-                        <select id="idRole" name="idRole">
-                            <c:forEach var="item" items="${roleList}">
-                                <option value="${item.id}" <c:if test="${item.id == account.idRole}">selected</c:if>>
-                                        ${item.name}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </td>
+                    <tr>
+                        <td class="info">
+                            <i class="fa-solid fa-house-circle-check"></i>
+                            <label for="idRole">Chức năng</label>
+                        </td>
+                        <td>
+                            <select id="idRole" name="idRole">
+                                <c:forEach var="item" items="${roleList}">
+                                    <option value="${item.id}" <c:if test="${item.id == account.idRole}">selected</c:if>>
+                                            ${item.name}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2" class="tdbtn">
                             <a href=""><button>Sửa thông tin</button></a>

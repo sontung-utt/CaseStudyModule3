@@ -16,12 +16,29 @@ public class LoginController extends HttpServlet {
     UserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        showFormLogin(req, resp);
+        String action = req.getParameter("action");
+        if ("info".equals(action)) {
+            showLoginUser(req, resp);
+        } else {
+            showFormLogin(req, resp);
+        }
     }
 
     public void showFormLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/user/login.jsp");
         dispatcher.forward(req, resp);
+    }
+
+    public void showLoginUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String username = (String) session.getAttribute("username");
+        if (username != null){
+            req.setAttribute("username",username);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/static/topFrame.jsp");
+            dispatcher.forward(req,resp);
+        } else {
+            resp.sendRedirect("/login");
+        }
     }
 
     @Override

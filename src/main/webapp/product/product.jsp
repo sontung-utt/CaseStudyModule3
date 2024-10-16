@@ -18,6 +18,7 @@
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/bd7b2915a7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<c:url value='/css/product.css?v=1.0'/>">
+    <link rel="stylesheet" href="<c:url value='/css/topFrame.css?v=1.0'/>">
     <title>Thông tin sản phẩm</title>
 </head>
 <body>
@@ -69,16 +70,7 @@
         </div>
     </div>
     <div class="main-info">
-        <div class="top-frame">
-            <div class="account"></div>
-            <a href="http://localhost:8080/logout">
-                <div class="logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <p>Đăng xuất</p>
-                </div>
-            </a>
-
-        </div>
+        <%@ include file="/static/topFrame.jsp" %>
         <div class="search">
             <div class="add-button">
                 <a href="http://localhost:8080/products?action=add">

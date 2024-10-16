@@ -72,7 +72,7 @@ public class AccountService implements IService<Account>{
     @Override
     public Account findById(int id) {
         Account account = null;
-        String sql = "select count(*) from accounts where id = ?;";
+        String sql = "select idRole, username, password, created_at, modified_at from accounts where id = ?;";
         try {
             assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

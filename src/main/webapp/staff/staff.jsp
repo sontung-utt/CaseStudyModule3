@@ -70,9 +70,7 @@
         </div>
     </div>
     <div class="main-info">
-        <div class="top-frame">
-            <div class="account"></div>
-        </div>
+        <%@ include file="/static/topFrame.jsp" %>
         <div class="search">
             <div class="add-button">
                 <a href="http://localhost:8080/staff?action=add">

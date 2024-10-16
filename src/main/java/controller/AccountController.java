@@ -119,7 +119,7 @@ public class AccountController extends HttpServlet {
         String password = req.getParameter("password");
         if(accountService.existAccountName(username)){
             req.setAttribute("errorMessage", "Tài khoản đã tồn tại!");
-            showFormRegister(req, resp);
+            showFormAdd(req, resp);
             return;
         }
         Account account = new Account(username,password);
@@ -142,7 +142,7 @@ public class AccountController extends HttpServlet {
         if(!existAccount.getUsername().equals(username)){
             if(accountService.existAccountName(username)){
                 req.setAttribute("errorMessage", "Tài khoản đã tồn tại!");
-                showFormRegister(req, resp);
+                showFormEdit(req, resp);
                 return;
             }
         }

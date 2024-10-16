@@ -133,16 +133,6 @@
     margin-left: 275px;
 }
 
-.top-frame {
-    width: calc(100% - 275px);
-    left: 275px;
-    height: 60px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: white;
-    position: fixed;
-    z-index: 10;
-}
-
 .main-info .info-product {
     width: 100%;
     height: 100%;
@@ -305,29 +295,3 @@ th {
     height: 100%;
     border: 1px solid black;
 }
-
-.top-frame {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.top-frame .logout {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    width: 100px;
-    height: 100%;
-    cursor: pointer;
-    gap: 5px;
-}
-
-.top-frame a {
-    text-decoration: none;
-    color: black;
-}
-
-.top-frame i {
-    font-size: 22px;
-}
-
