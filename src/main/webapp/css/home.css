@@ -82,10 +82,16 @@
 .form {
     margin-top: 30px;
     color: white;
+    align-items: center;
 }
 
 .form h1 {
     font-size: 30px;
+    color: black;
+}
+
+.form h2 {
+    font-size: 25px;
     color: black;
 }
 

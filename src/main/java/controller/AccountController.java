@@ -24,23 +24,28 @@ public class AccountController extends HttpServlet {
     IService<Role> roleIService = new RoleService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
-        switch (action) {
-            case "register":
-                showFormRegister(req, resp);
-                break;
-            case "account":
-                showAccount(req, resp);
-                break;
-            case "add":
-                showFormAdd(req, resp);
-                break;
-            case "edit":
-                showFormEdit(req, resp);
-                break;
-            case "delete":
-                deleteAccount(req, resp);
-                break;
+        HttpSession session = req.getSession(false);
+        if (session != null && session.getAttribute("username") != null){
+            String action = req.getParameter("action");
+            switch (action) {
+                case "register":
+                    showFormRegister(req, resp);
+                    break;
+                case "account":
+                    showAccount(req, resp);
+                    break;
+                case "add":
+                    showFormAdd(req, resp);
+                    break;
+                case "edit":
+                    showFormEdit(req, resp);
+                    break;
+                case "delete":
+                    deleteAccount(req, resp);
+                    break;
+            }
+        } else {
+            resp.sendRedirect("/login");
         }
     }
 

@@ -45,7 +45,7 @@ public class BrandCategoryController extends HttpServlet {
                     deleteType(req, resp);
                     break;
             }
-        }else {
+        } else {
             resp.sendRedirect("/login");
         }
     }

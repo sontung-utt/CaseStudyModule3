@@ -12,7 +12,21 @@ import java.io.IOException;
 public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        if("staff".equals(action)){
+            showLoginStaff(req, resp);
+        } else {
+            showLoginCustomer(req, resp);
+        }
+    }
+
+    private void showLoginCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/user/home.jsp");
+        dispatcher.forward(req,resp);
+    }
+
+    private void showLoginStaff(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/staffHome.jsp");
         dispatcher.forward(req,resp);
     }
 }

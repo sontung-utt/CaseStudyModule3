@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,21 +23,27 @@ public class DepartmentController extends HttpServlet {
     StaffService staffService = new StaffService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
-        switch (action){
-            case "department":
-                showDepartment(req, resp);
-                break;
-            case "add":
-                showFormAdd(req, resp);
-                break;
-            case "edit":
-                showFormEdit(req, resp);
-                break;
-            case "delete":
-                deleteDepartment(req, resp);
-                break;
+        HttpSession session = req.getSession(false);
+        if (session != null && session.getAttribute("username") != null){
+            String action = req.getParameter("action");
+            switch (action){
+                case "department":
+                    showDepartment(req, resp);
+                    break;
+                case "add":
+                    showFormAdd(req, resp);
+                    break;
+                case "edit":
+                    showFormEdit(req, resp);
+                    break;
+                case "delete":
+                    deleteDepartment(req, resp);
+                    break;
+            }
+        } else {
+            resp.sendRedirect("/login");
         }
+
     }
 
     public void showDepartment(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
