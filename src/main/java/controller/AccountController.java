@@ -45,7 +45,7 @@ public class AccountController extends HttpServlet {
                     break;
             }
         } else {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/home?action=staff");
         }
     }
 

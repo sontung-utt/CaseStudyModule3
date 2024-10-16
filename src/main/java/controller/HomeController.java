@@ -26,7 +26,7 @@ public class HomeController extends HttpServlet {
     }
 
     private void showLoginStaff(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/staffHome.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/user/staff.jsp");
         dispatcher.forward(req,resp);
     }
 }
