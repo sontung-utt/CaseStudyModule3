@@ -28,14 +28,19 @@
         <div class="header-form">
 
             <div class="item-header">
-                <a href="http://localhost:8080/menu">
+                <a href="http://localhost:8080/view">
                     <i class="fa-solid fa-house"></i>
                     <p>Trang chủ</p>
                 </a>
             </div>
 
         </div>
-        <form action="http://localhost:8080/accCustomers?action=add" method="post">
+        <% if (request.getAttribute("errorMessage") != null) { %>
+        <div class="error-message">
+            <p><%= request.getAttribute("errorMessage") %></p>
+        </div>
+        <% } %>
+        <form action="http://localhost:8080/view?action=add" method="post">
             <table border="1">
                 <tr>
                     <th colspan="2">THÊM THÔNG TIN CÁ NHÂN</th>
@@ -44,7 +49,7 @@
                     <td class="info">
                         <label for="username">Tên tài khoản</label>
                     </td>
-                    <td><input type="text" name="username" id="username" readonly value=""></td>
+                    <td><input type="text" name="username" id="username" readonly value="${customerAccount.username}"></td>
                 </tr>
                 <tr>
                     <td class="info">

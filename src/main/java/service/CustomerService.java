@@ -15,8 +15,8 @@ public class CustomerService implements IService<Customer>{
     public CustomerService(){
 
     }
-    @Override
-    public void add(Customer customer) {
+
+    public void add(Customer customer, int idLogin) {
         String sql = "insert into customer(name, age, gender, address, phone, email, userId)\n" +
                 "values (?,?,?,?,?,?,?);";
         try {
@@ -28,11 +28,16 @@ public class CustomerService implements IService<Customer>{
             preparedStatement.setString(4, customer.getAddress());
             preparedStatement.setString(5, customer.getPhone());
             preparedStatement.setString(6,customer.getEmail());
-            preparedStatement.setInt(7,customer.getUserId());
+            preparedStatement.setInt(7,idLogin);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void add(Customer customer) {
+
     }
 
     @Override
@@ -99,7 +104,7 @@ public class CustomerService implements IService<Customer>{
     @Override
     public List<Customer> getAll() {
         List<Customer> customerList = new ArrayList<>();
-        String sql = "select * from customer;";
+        String sql = "select a.*, b.username as username from customer a join customeraccount b on a.userId = b.id;";
         try {
             assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -113,7 +118,8 @@ public class CustomerService implements IService<Customer>{
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
                 int userId = resultSet.getInt("userId");
-                Customer customer = new Customer(id,name,age,gender,address,phone,email,userId);
+                String username = resultSet.getString("username");
+                Customer customer = new Customer(id,name,age,gender,address,phone,email,userId, username);
                 customerList.add(customer);
             }
         } catch (SQLException e) {

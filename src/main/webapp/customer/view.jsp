@@ -136,6 +136,17 @@
                     <p>${customerUserName}</p>
                 </div>
             </div>
+            <div class="info">
+                <a href="http://localhost:8080/view?action=add">
+                    <div class="icon">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </div>
+                    <div class="item">
+                        <p>Sửa thông tin cá nhân</p>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </div>
     <div class="filter-back-up" id="filterSection">

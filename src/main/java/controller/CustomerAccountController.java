@@ -24,19 +24,12 @@ public class CustomerAccountController extends HttpServlet {
             case "register":
                 showFormRegister(req, resp);
                 break;
-            case "add":
-                showFormAddInfo(req, resp);
-                break;
+
         }
     }
 
     public void showFormRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/user/register.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-    public void showFormAddInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/add.jsp");
         dispatcher.forward(req, resp);
     }
 

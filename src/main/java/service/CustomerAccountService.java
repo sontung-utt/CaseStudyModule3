@@ -1,5 +1,6 @@
 package service;
 
+import model.Customer;
 import model.CustomerAccount;
 
 import java.sql.Connection;
