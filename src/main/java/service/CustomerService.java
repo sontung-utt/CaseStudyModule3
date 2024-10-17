@@ -35,13 +35,7 @@ public class CustomerService implements IService<Customer>{
         }
     }
 
-    @Override
-    public void add(Customer customer) {
-
-    }
-
-    @Override
-    public void update(int id, Customer customer) {
+    public void update(int id, Customer customer, int idLogin){
         String sql = "update customer\n" +
                 "set name = ?, age = ?, gender = ?, address = ?, phone = ?, email = ?, userId = ?\n" +
                 "where id = ?;";
@@ -54,12 +48,22 @@ public class CustomerService implements IService<Customer>{
             preparedStatement.setString(4, customer.getAddress());
             preparedStatement.setString(5, customer.getPhone());
             preparedStatement.setString(6,customer.getEmail());
-            preparedStatement.setInt(7, customer.getUserId());
+            preparedStatement.setInt(7, idLogin);
             preparedStatement.setInt(8, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void add(Customer customer) {
+
+    }
+
+    @Override
+    public void update(int id, Customer customer) {
+
     }
 
     @Override
@@ -184,5 +188,22 @@ public class CustomerService implements IService<Customer>{
     public boolean checkValidateEmail (String email) {
         String emailRegex = "^[\\w-\\.]+@[\\w-\\.]+\\.[a-zA-Z]{2,6}$";
         return !email.matches(emailRegex);
+    }
+
+    public int getIdByUserId (int userId) {
+        String sql = "select id from customer where userId = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getInt("id");
+            } else {
+                return -1;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

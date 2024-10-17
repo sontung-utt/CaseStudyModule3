@@ -133,7 +133,7 @@
                     <i class="fa-solid fa-user-large"></i>
                 </div>
                 <div class="item">
-                    <p>${customerUserName}</p>
+                    <a href="http://localhost:8080/accCustomers?action=view"><p>${customerUserName}</p></a>
                     <a href="http://localhost:8080/logout?action=customer">Đăng xuất</a>
                 </div>
             </div>
