@@ -156,14 +156,14 @@ th, td {
     text-align: center;
 }
 
-.btn {
+table .btn {
     padding: 5px;
     border-radius: 4px;
     color: white;
     font-size: 12px;
     font-weight: bold;
     border: none;
-    width: 40px;
+    width: 35px;
 }
 
 .btn-remove {

@@ -128,15 +128,6 @@
                     <p>Giỏ hàng</p>
                 </div>
             </div>
-            <div class="register">
-                <div class="icon">
-                    <i class="fa-solid fa-user-large"></i>
-                </div>
-                <div class="item">
-                    <a href="http://localhost:8080/accCustomers?action=view"><p>${customerUserName}</p></a>
-                    <a href="http://localhost:8080/logout?action=customer">Đăng xuất</a>
-                </div>
-            </div>
             <div class="info">
                 <a href="http://localhost:8080/view?action=add">
                     <div class="icon">
@@ -148,6 +139,16 @@
                 </a>
 
             </div>
+            <div class="register">
+                <div class="icon">
+                    <i class="fa-solid fa-user-large"></i>
+                </div>
+                <div class="item">
+                    <a href="http://localhost:8080/accCustomers?action=view"><p>${customerUserName}</p></a>
+                    <a href="http://localhost:8080/logout?action=customer"><p>Đăng xuất</p></a>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="filter-back-up" id="filterSection">

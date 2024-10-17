@@ -38,3 +38,6 @@
 
 </div>
 </body>
+
+<c:url value="/js/changeColor.js" var="myScriptPath" />
+<script src="${myScriptPath}"></script>
