@@ -38,4 +38,21 @@ public class UserService {
             throw new RuntimeException(e);
         }
     }
+
+    public int getCustomerId(String username, String password) {
+        String sql = "select id from customeraccount where username = ? and password = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                return resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
 }

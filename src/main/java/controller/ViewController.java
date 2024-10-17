@@ -25,14 +25,12 @@ public class ViewController extends HttpServlet {
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("customerUserName") != null){
             String action = req.getParameter("action");
-            switch (action) {
-                case "view":
-                    showView(req, resp);
-                    break;
-                case "add":
-                    showFormAddInfo(req, resp);
-                    break;
+            if("add".equals(action)){
+                showFormAddInfo(req, resp);
+            } else {
+                showView(req, resp);
             }
+
         } else {
             resp.sendRedirect("/home");
         }
@@ -44,12 +42,17 @@ public class ViewController extends HttpServlet {
     }
 
     public void showFormAddInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId"));
+        HttpSession session = req.getSession();
+        Integer idLogin = (Integer) session.getAttribute("idLogin");
+        if (idLogin != -1) {
+            CustomerAccount customerAccount = customerAccountIService.findById(idLogin);
+            req.setAttribute("customerAccount", customerAccount);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/add.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("/loginUser");
+        }
 
-        CustomerAccount customerAccount = customerAccountIService.findById(userId);
-        req.setAttribute("customerAccount", customerAccount);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/add.jsp");
-        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -93,8 +96,16 @@ public class ViewController extends HttpServlet {
             showFormAddInfo(req, resp);
             return;
         }
-        int age = Integer.parseInt(ageStr);
-        Customer customer = new Customer(name,age,gender,address,phone,email,idLogin);
-        customerService.add(customer,idLogin);
+        try {
+            int age = Integer.parseInt(ageStr);
+            Customer customer = new Customer(name,age,gender,address,phone,email,idLogin);
+            customerService.add(customer,idLogin);
+            resp.sendRedirect("/view");
+        } catch (NumberFormatException e) {
+            req.setAttribute("errorMessage", "Tuổi phải là một số hợp lệ.");
+            showFormAddInfo(req, resp);
+        }
+
+
     }
 }

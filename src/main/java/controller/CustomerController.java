@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +20,13 @@ public class CustomerController extends HttpServlet {
     IService<Customer> customerIService = new CustomerService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        showCustomer(req, resp);
+        HttpSession session = req.getSession(false);
+        if (session != null && session.getAttribute("username") != null){
+            showCustomer(req, resp);
+        } else {
+            resp.sendRedirect("/home?action=staff");
+        }
+
     }
 
     public void showCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

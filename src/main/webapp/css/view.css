@@ -343,7 +343,7 @@
     gap: 10px;
 }
 
-.right-header .phone, .order, .cart, .register {
+.right-header .phone, .order, .cart, .register, .info {
     height: 45px;
     display: flex;
     align-items: center;
@@ -387,7 +387,34 @@
 }
 
 .right-header .register, .register:hover {
-    width: 25%;
+    width: 18%;
+}
+
+.right-header .info {
+    width: 130px;
+}
+
+.right-header p {
+    font-size: 14px;
+}
+
+.right-header .info a{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    display: flex;
+}
+
+.right-header .register a{
+    text-decoration: none;
+    color: white;
+}
+
+.right-header .info:hover {
+    height: 45px;
+    width: 135px;
+    border-radius: 20px;
+    background-color: rgba(171,170,170,0.5);
 }
 
 .right-header .phone:hover, .order:hover, .cart:hover, .register:hover {

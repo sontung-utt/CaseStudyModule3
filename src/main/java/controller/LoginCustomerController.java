@@ -50,9 +50,11 @@ public class LoginCustomerController extends HttpServlet {
     public void loginCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter(("password"));
+        int idLogin = userService.getCustomerId(username, password);
         if (userService.checkCustomer(username,password)){
             HttpSession session = req.getSession();
             session.setAttribute("customerUserName", username);
+            session.setAttribute("idLogin", idLogin);
             resp.sendRedirect("/view");
         } else {
             req.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng!");

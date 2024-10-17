@@ -16,6 +16,11 @@ public class LogoutController extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Xóa session
         }
-        resp.sendRedirect("/login");
+        String action = req.getParameter("action");
+        if ("customer".equals(action)){
+            resp.sendRedirect("/loginUser");
+        } else {
+            resp.sendRedirect("/login");
+        }
     }
 }

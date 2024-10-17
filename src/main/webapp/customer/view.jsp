@@ -134,6 +134,7 @@
                 </div>
                 <div class="item">
                     <p>${customerUserName}</p>
+                    <a href="http://localhost:8080/logout?action=customer">Đăng xuất</a>
                 </div>
             </div>
             <div class="info">

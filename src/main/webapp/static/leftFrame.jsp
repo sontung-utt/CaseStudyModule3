@@ -60,34 +60,34 @@
                 </div>
                 <div class="list">
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-boxes-packing"></i>Quản lý sản phẩm</a>
+                        <a href="http://localhost:8080/products?action=product"><i class="fa-solid fa-boxes-packing"></i>Quản lý sản phẩm</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-box-open"></i>Quản lý loại sản phẩm</a>
+                        <a href="http://localhost:8080/categories?action=category"><i class="fa-solid fa-box-open"></i>Quản lý loại sản phẩm</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-rectangle-list"></i>Quản lý thương hiệu</a>
+                        <a href="http://localhost:8080/brands?action=brand"><i class="fa-solid fa-rectangle-list"></i>Quản lý thương hiệu</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-layer-group"></i>Quản lý nhóm sản phẩm</a>
+                        <a href="http://localhost:8080/brand_category?action=home"><i class="fa-solid fa-layer-group"></i>Quản lý nhóm sản phẩm</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-user-group"></i>Quản lý tài khoản nhân sự</a>
+                        <a href="http://localhost:8080/accounts?action=account"><i class="fa-solid fa-user-group"></i>Quản lý tài khoản nhân sự</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-circle-user"></i>Quản lý tài khoản khách hàng</a>
+                        <a href="http://localhost:8080/accounts?action=customer"><i class="fa-solid fa-circle-user"></i>Quản lý tài khoản khách hàng</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-user-tie"></i>Quản lý nhân sự</a>
+                        <a href="http://localhost:8080/staff?action=staff"><i class="fa-solid fa-user-tie"></i>Quản lý nhân sự</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-users"></i>Quản lý khách hàng</a>
+                        <a href="http://localhost:8080/customers"><i class="fa-solid fa-users"></i>Quản lý khách hàng</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-building-user"></i>Quản lý phòng ban</a>
+                        <a href="http://localhost:8080/departments?action=department"><i class="fa-solid fa-building-user"></i>Quản lý phòng ban</a>
                     </div>
                     <div class="list-item">
-                        <a href=""><i class="fa-solid fa-user-shield"></i></i>Quản lý chức năng</a>
+                        <a href="http://localhost:8080/role?action=role"><i class="fa-solid fa-user-shield"></i></i>Quản lý chức năng</a>
                     </div>
                 </div>
             </div>
