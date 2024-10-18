@@ -47,16 +47,16 @@ public class CartController extends HttpServlet {
     }
 
     public void showAddCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         Integer idLogin = (Integer) session.getAttribute("idLogin");
+        int idCustomer = customerService.getIdByUserId(idLogin);
         if (idLogin != -1) {
             String idProductStr = req.getParameter("idProduct");
             if (idProductStr!=null && !idProductStr.isEmpty()){
                 int idProduct = Integer.parseInt(idProductStr);
                 Product product = productIService.findById(idProduct);
-                int idCustomer = customerService.getIdByUserId(idLogin);
-                int idCart = cartService.getIdCartByIdCustomer(idCustomer);
                 if (idCustomer != -1) {
+                    int idCart = cartService.getIdCartByIdCustomer(idCustomer);
                     req.setAttribute("product", product);
                     req.setAttribute("idProduct",idProduct);
                     if (cartDetailService.checkExistProductInCart(idCart, idProduct)){
@@ -82,14 +82,23 @@ public class CartController extends HttpServlet {
     public void deleteCartDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDelete = Integer.parseInt(req.getParameter("id"));
         cartDetailIService.delete(idDelete);
-        resp.sendRedirect("/view");
+        resp.sendRedirect("/cart?action=cart");
     }
 
     public void showCartDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<CartDetail> cartDetailList = cartDetailIService.getAll();
-        req.setAttribute("cartDetailList", cartDetailList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/cart/cart.jsp");
-        dispatcher.forward(req, resp);
+        HttpSession session = req.getSession(false);
+        Integer idLogin = (Integer) session.getAttribute("idLogin");
+        int idCustomer = customerService.getIdByUserId(idLogin);
+        if (idCustomer != -1){
+            int idCart = cartService.getIdCartByIdCustomer(idCustomer);
+            List<CartDetail> cartDetailList = cartDetailService.getListCartByIdCart(idCart);
+            req.setAttribute("cartDetailList", cartDetailList);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/cart/cart.jsp");
+            dispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("/view?action=add");
+        }
+
     }
 
     @Override
@@ -106,7 +115,7 @@ public class CartController extends HttpServlet {
     }
 
     public void addCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         Integer idLogin = (Integer) session.getAttribute("idLogin");
         int idCustomer = customerService.getIdByUserId(idLogin);
         int idProduct = Integer.parseInt(req.getParameter("idProduct"));
@@ -120,7 +129,7 @@ public class CartController extends HttpServlet {
     }
 
     public void editCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
+        HttpSession session = req.getSession(false);
         Integer idLogin = (Integer) session.getAttribute("idLogin");
         int idCustomer = customerService.getIdByUserId(idLogin);
         int idProduct = Integer.parseInt(req.getParameter("idProduct"));

@@ -84,10 +84,12 @@ public class CartService implements IService<Cart>{
 
     public int getIdCartByIdCustomer (int idCustomer) {
         String sql = "select a.id as id from cart a\n" +
-                "join customer b on a.idCustomer = b.id;";
+                "join customer b on a.idCustomer = b.id\n" +
+                "where idCustomer = ?;";
         try {
             assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idCustomer);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 return resultSet.getInt("id");

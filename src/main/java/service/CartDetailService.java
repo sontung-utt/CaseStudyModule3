@@ -157,4 +157,31 @@ public class CartDetailService implements IService<CartDetail>{
         }
         return 0;
     }
+
+    public List<CartDetail> getListCartByIdCart(int idCart) {
+        List<CartDetail> cartDetailList = new ArrayList<>();
+        String sql = "SELECT a.*, b.name as nameProduct FROM cartdetail a " +
+                "JOIN product b ON a.idProduct = b.id " +
+                "WHERE a.idCart = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, idCart);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idProduct = resultSet.getInt("idProduct");
+                int quantity = resultSet.getInt("quantity");
+                double price = resultSet.getDouble("price");
+                LocalDateTime created_at = resultSet.getTimestamp("created_at").toLocalDateTime();
+                String formattedCreatedAt = created_at.format(formatter);
+                String nameProduct = resultSet.getString("nameProduct");
+                CartDetail cartDetail = new CartDetail(id, idCart, idProduct, quantity, price, formattedCreatedAt, nameProduct);
+                cartDetailList.add(cartDetail);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cartDetailList;
+    }
 }

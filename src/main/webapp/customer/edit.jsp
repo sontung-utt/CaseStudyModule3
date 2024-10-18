@@ -55,7 +55,7 @@
                     <td class="info">
                         <label for="id">Mã khách hàng</label>
                     </td>
-                    <td><input type="text" name="id" id="id" value="${customer.id}"></td>
+                    <td><input type="text" name="id" id="id" readonly value="${customer.id}"></td>
                 </tr>
                 <tr>
                     <td class="info">

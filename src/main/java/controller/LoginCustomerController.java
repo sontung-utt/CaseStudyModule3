@@ -53,6 +53,8 @@ public class LoginCustomerController extends HttpServlet {
         int idLogin = userService.getCustomerId(username, password);
         if (userService.checkCustomer(username,password)){
             HttpSession session = req.getSession();
+            session.invalidate();
+            session = req.getSession(true);
             session.setAttribute("customerUserName", username);
             session.setAttribute("idLogin", idLogin);
             resp.sendRedirect("/view");

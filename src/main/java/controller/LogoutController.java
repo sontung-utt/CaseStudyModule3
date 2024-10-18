@@ -12,14 +12,19 @@ import java.io.IOException;
 public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        if (session != null) {
-            session.invalidate(); // Xóa session
-        }
+
         String action = req.getParameter("action");
         if ("customer".equals(action)){
+            HttpSession session = req.getSession(false);
+            if (session != null) {
+                session.invalidate(); // Xóa session
+            }
             resp.sendRedirect("/loginUser");
         } else {
+            HttpSession session = req.getSession(false);
+            if (session != null) {
+                session.invalidate(); // Xóa session
+            }
             resp.sendRedirect("/login");
         }
     }

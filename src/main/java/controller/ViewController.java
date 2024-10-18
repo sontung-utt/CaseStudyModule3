@@ -51,6 +51,7 @@ public class ViewController extends HttpServlet {
             int idCart = cartService.getIdCartByIdCustomer(idCustomer);
             int numProduct = cartDetailService.numProduct(idCart, idCustomer);
             req.setAttribute("productList",productList);
+            req.setAttribute("idCart",idCart);
             req.setAttribute("numProduct", numProduct);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/view.jsp");
             dispatcher.forward(req, resp);

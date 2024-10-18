@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="cart">
-                <a href="http://localhost:8080/cart?action=cart">
+                <a href="http://localhost:8080/cart?action=cart&id=${idCart}">
                     <div class="icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <div class="quantity-cart">${numProduct}</div>

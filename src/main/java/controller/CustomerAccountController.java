@@ -93,7 +93,7 @@ public class CustomerAccountController extends HttpServlet {
             showFormRegister(req, resp);
             return;
         }
-        if (!customerAccountService.checkPassword(password,rePassword)){
+        if (!customerAccountService.        checkPassword(password,rePassword)){
             req.setAttribute("errorMessage", "Mật khẩu và Nhập lại mật khẩu phải trùng khớp!");
             showFormRegister(req, resp);
             return;
