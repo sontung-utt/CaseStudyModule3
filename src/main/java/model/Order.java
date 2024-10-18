@@ -4,22 +4,22 @@ public class Order {
     private int id;
     private String time;
     private double total;
-    private int idCustomer;
+    private int idCart;
 
     public Order() {
     }
 
-    public Order(String time, double total, int idCustomer) {
+    public Order(String time, double total, int idCart) {
         this.time = time;
         this.total = total;
-        this.idCustomer = idCustomer;
+        this.idCart = idCart;
     }
 
-    public Order(int id, String time, double total, int idCustomer) {
+    public Order(int id, String time, double total, int idCart) {
         this.id = id;
         this.time = time;
         this.total = total;
-        this.idCustomer = idCustomer;
+        this.idCart = idCart;
     }
 
     public int getId() {
@@ -46,11 +46,11 @@ public class Order {
         this.total = total;
     }
 
-    public int getIdCustomer() {
-        return idCustomer;
+    public int getIdCart() {
+        return idCart;
     }
 
-    public void setIdCustomer(int idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setIdCart(int idCart) {
+        this.idCart = idCart;
     }
 }

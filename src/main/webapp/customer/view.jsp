@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value='/css/view.css?v=1.0'/>">
+    <link rel="stylesheet" href="<c:url value='/css/list-product.css?v=1.0'/>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
@@ -120,13 +121,15 @@
                 </div>
             </div>
             <div class="cart">
-                <div class="icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <div class="quantity-cart">0</div>
-                </div>
-                <div class="item">
-                    <p>Giỏ hàng</p>
-                </div>
+                <a href="http://localhost:8080/cart?action=cart">
+                    <div class="icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="quantity-cart">${numProduct}</div>
+                    </div>
+                    <div class="item">
+                        <p>Giỏ hàng</p>
+                    </div>
+                </a>
             </div>
             <div class="info">
                 <a href="http://localhost:8080/view?action=add">
@@ -491,6 +494,31 @@
         </div>
     </div>
     <div class="list-product">
+        <c:forEach var="product" items="${productList}">
+            <div class="item-product">
+                <div class="image-product">
+                    <img src="${product.image}" alt="">
+                </div>
+                <div class="name-product">
+                    <h3>${product.name}</h3>
+                </div>
+                <div class="price-product">
+                    <h3>$</h3>
+                    <h3>${product.price}VND</h3>
+                </div>
+
+                <div class="cart-plus">
+                    <div class="description">
+                        <p>${product.description}</p>
+                    </div>
+                    <div class="cart-i">
+                        <a href="http://localhost:8080/cart?action=add&idProduct=${product.id}"><i class="fa-solid fa-cart-plus"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </c:forEach>
+
 
     </div>
     <div class="footer"></div>
