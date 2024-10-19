@@ -89,6 +89,9 @@
                     <div class="list-item">
                         <a href="http://localhost:8080/role?action=role"><i class="fa-solid fa-user-shield"></i></i>Quản lý chức năng</a>
                     </div>
+                    <div class="list-item">
+                        <a href="http://localhost:8080/orderStaff"><i class="fa-solid fa-cart-shopping"></i></i></i>Quản lý đơn hàng</a>
+                    </div>
                 </div>
             </div>
         </div>

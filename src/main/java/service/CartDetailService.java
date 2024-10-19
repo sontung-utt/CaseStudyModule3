@@ -184,4 +184,21 @@ public class CartDetailService implements IService<CartDetail>{
         }
         return cartDetailList;
     }
+
+    public double totalPerCartId(int idCart){
+        String sql = "select sum(a.quantity * a.price) as totalPerCartId from cartdetail a where idCart = ?;";
+        double total = 0;
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idCart);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                total = resultSet.getDouble("totalPerCartId");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
 }

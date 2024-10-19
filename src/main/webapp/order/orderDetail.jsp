@@ -17,40 +17,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value='/css/cart.css?v=1.0'/>">
+    <link rel="stylesheet" href="<c:url value='/css/orderDetail.css?v=1.0'/>">
 
-    <title>Quản lý giỏ hàng</title>
+    <title>Quản lý đơn hàng</title>
 </head>
 <body>
 <div class="container">
 
-        <div class="header-form">
+    <div class="header-form">
 
-            <div class="item-header">
-                <a href="http://localhost:8080/view">
-                    <i class="fa-solid fa-house"></i>
-                    <p>Trang chủ</p>
-                </a>
-            </div>
+        <div class="item-header">
+            <a href="http://localhost:8080/view">
+                <i class="fa-solid fa-house"></i>
+                <p>Trang chủ</p>
+            </a>
+        </div>
 
-        </div>
-        <% if (request.getAttribute("errorMessage") != null) { %>
-        <div class="error-message">
-            <p><%= request.getAttribute("errorMessage") %></p>
-        </div>
-        <% } %>
-        <div class="info-cart">
+    </div>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    <div class="error-message">
+        <p><%= request.getAttribute("errorMessage") %></p>
+    </div>
+    <% } %>
+
+    <div class="info-cart">
+        <form action="http://localhost:8080/orderCustomer" method="post">
             <table border="1">
                 <tr>
-                    <th colspan="6">THÔNG TIN GIỎ HÀNG</th>
+                    <th colspan="4">THÔNG TIN ĐƠN HÀNG</th>
                 </tr>
                 <tr>
                     <th>STT</th>
                     <th>Tên sản phẩm</th>
                     <th>Số lượng</th>
                     <th>Đơn giá</th>
-                    <th>Ngày thêm vào giỏ hàng</th>
-                    <th>Cập nhật giỏ hàng</th>
                 </tr>
                 <c:forEach var="item" items="${cartDetailList}" varStatus="loop">
                     <tr>
@@ -58,20 +58,22 @@
                         <td>${item.nameProduct}</td>
                         <td>${item.quantity}</td>
                         <td>${item.price}</td>
-                        <td>${item.created_at}</td>
-                        <td class="btn">
-                            <a href="http://localhost:8080/cart?action=add&idProduct=${item.idProduct}"><button><i class="fa-solid fa-cart-arrow-down"></i></button></a>
-                            <a href="http://localhost:8080/cart?action=delete&id=${item.id}"><button><i class="fa-solid fa-trash"></i></button></a>
-                        </td>
+
                     </tr>
                 </c:forEach>
                 <tr>
-                    <th colspan="6" class="thbtn">
-                        <a href="http://localhost:8080/orderCustomer">ĐẶT HÀNG</a>
+                    <th colspan="2">Tổng tiền thanh toán</th>
+                    <th colspan="2">${total}</th>
+                </tr>
+                <tr>
+                    <th colspan="4" class="tdbtn">
+                        <button>XÁC NHẬN ĐƠN HÀNG</button>
                     </th>
                 </tr>
             </table>
+        </form>
     </div>
+
 </div>
 </body>
 </html>

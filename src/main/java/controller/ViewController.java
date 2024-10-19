@@ -25,6 +25,7 @@ public class ViewController extends HttpServlet {
     IService<Cart> cartIService = new CartService();
     CartService cartService = new CartService();
     CartDetailService cartDetailService = new CartDetailService();
+    OrderService orderService = new OrderService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -49,9 +50,11 @@ public class ViewController extends HttpServlet {
             List<Product> productList = productIService.getAll();
             int idCustomer = customerService.getIdByUserId(idLogin);
             int idCart = cartService.getIdCartByIdCustomer(idCustomer);
+            //int idOrder = orderService.getIdOrderByIdCustomer(idCustomer);
             int numProduct = cartDetailService.numProduct(idCart, idCustomer);
             req.setAttribute("productList",productList);
             req.setAttribute("idCart",idCart);
+            req.setAttribute("idCustomer", idCustomer);
             req.setAttribute("numProduct", numProduct);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/view.jsp");
             dispatcher.forward(req, resp);

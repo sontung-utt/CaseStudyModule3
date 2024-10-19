@@ -5,6 +5,10 @@
     font-family: "Roboto Condensed", sans-serif;
 }
 
+form {
+    width: 50%;
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -58,8 +62,9 @@ i {
 }
 
 table {
-    width: 65%;
+    width: 60%;
     align-content: center;
+    margin: auto;
 }
 
 th {
@@ -68,10 +73,9 @@ th {
     background-color: darkgrey;
 }
 
-.info-cart td {
+td {
     padding: 6px;
     font-size: 16px;
-    align-content: center;
 }
 
 .info-cart tr:nth-child(even) {
@@ -95,16 +99,15 @@ th {
 }
 
 .info-cart button {
-    width: 32px;
-    height: 27px;
+    width: 50px;
+    height: 35px;
     background-color: rgb(215, 48, 48);
-    border: none;
+    color: white;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 15px;
+    border: 2px solid darkred;
 }
 
 .info-cart i {
@@ -122,14 +125,11 @@ th {
     color: white;
 }
 
-.info-cart .thbtn a {
+.tdbtn {
+    display: flex;
+    justify-content: center;
+}
+
+.info-cart a {
     text-decoration: none;
-    border: 1px solid black;
-    padding: 8px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #ff6a00;
-    color: white;
-    border-radius: 50px;
-    font-size: 17px;
 }

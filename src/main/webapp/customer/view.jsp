@@ -113,12 +113,15 @@
                 </div>
             </div>
             <div class="order">
-                <div class="icon">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-                <div class="item">
-                    <p>Tra cứu đơn hàng</p>
-                </div>
+                <a href="http://localhost:8080/orderCustomer?action=view&idCustomer=${idCustomer}">
+                    <div class="icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="item">
+                        <p>Tra cứu đơn hàng</p>
+                    </div>
+                </a>
+
             </div>
             <div class="cart">
                 <a href="http://localhost:8080/cart?action=cart&id=${idCart}">
@@ -493,6 +496,11 @@
             </div>
         </div>
     </div>
+    <c:if test="${not empty errorMessage}">
+        <div class="error-message">
+            <p>${errorMessage}</p>
+        </div>
+    </c:if>
     <div class="list-product">
         <c:forEach var="product" items="${productList}">
             <div class="item-product">

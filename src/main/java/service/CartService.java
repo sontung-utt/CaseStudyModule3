@@ -35,7 +35,15 @@ public class CartService implements IService<Cart>{
 
     @Override
     public void delete(int id) {
-
+        String sql = "delete from cart where id = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -96,6 +104,18 @@ public class CartService implements IService<Cart>{
             } else {
                 return -1;
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteCartDetailById(int idCart) {
+        String sql = "delete from cartdetail where idCart = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idCart);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
