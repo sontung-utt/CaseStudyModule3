@@ -206,4 +206,31 @@ public class CustomerService implements IService<Customer>{
             throw new RuntimeException(e);
         }
     }
+
+    public List<Customer> getCustomerByName(String name) {
+        List<Customer> customerList = new ArrayList<>();
+        String sql = "select a.*, b.username as username from customer a join customeraccount b on a.userId = b.id where a.name like ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,"%" + name + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                String gender = resultSet.getString("gender");
+                String address = resultSet.getString("address");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                int userId = resultSet.getInt("userId");
+                String username = resultSet.getString("username");
+                Customer customer = new Customer(id,name,age,gender,address,phone,email,userId, username);
+                customerList.add(customer);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customerList;
+    }
 }

@@ -47,9 +47,20 @@ public class ProductController extends HttpServlet {
     }
 
     public void showProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> productList = productIService.getAll();
+        List<Product> productList;
+        String name = req.getParameter("name");
+        if (name!=null && !name.trim().isEmpty()){
+            productList = productService.getProductByName(name);
+        } else {
+            productList = productIService.getAll();
+        }
+        if (productList.isEmpty()){
+            req.setAttribute("errorMessage", "Không có sản phẩm nào.");
+            req.setAttribute("productList", productList);
+        } else {
+            req.setAttribute("productList", productList);
+        }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/product/product.jsp");
-        req.setAttribute("productList", productList);
         dispatcher.forward(req, resp);
     }
 

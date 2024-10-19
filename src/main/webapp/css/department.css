@@ -215,6 +215,12 @@ th {
     background-color: rgb(251, 148, 165);
 }
 
+.form-department .search {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
 .form-staff .search {
     background-color: white;
     position: relative;

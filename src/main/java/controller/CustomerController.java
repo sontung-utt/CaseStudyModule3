@@ -18,6 +18,7 @@ import java.util.List;
 
 public class CustomerController extends HttpServlet {
     IService<Customer> customerIService = new CustomerService();
+    CustomerService customerService = new CustomerService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
@@ -30,9 +31,15 @@ public class CustomerController extends HttpServlet {
     }
 
     public void showCustomer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Customer> customerList = customerIService.getAll();
+        List<Customer> customerList;
+        String name = req.getParameter("name");
+        if (name!=null && !name.trim().isEmpty()){
+            customerList = customerService.getCustomerByName(name);
+        } else {
+            customerList = customerService.getAll();
+        }
         if (customerList.isEmpty()) {
-            req.setAttribute("errorMessage", "Hiện tại không có khách hàng nào.");
+            req.setAttribute("errorMessage", "Không có khách hàng nào.");
             req.setAttribute("customerList", customerList);
         } else {
             req.setAttribute("customerList", customerList);

@@ -142,4 +142,36 @@ public class ProductService implements IService<Product>{
         }
         return false;
     }
+
+    public List<Product> getProductByName(String name) {
+        List<Product> productList = new ArrayList<>();
+        String sql = "select a.id as id,a.name as name, a.price as price, a.quantity as quantity,\n" +
+                "       a.image as image, a.description as description, d.name as categoryName, c.name as brandName\n" +
+                "from product a\n" +
+                "join brandCategory b on a.idBrandCategory = b.id\n" +
+                "join brand c on b.idBrand = c.id\n" +
+                "join category d on b.idCategory = d.id\n" +
+                "where a.name like ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,"%"+name+"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                name = resultSet.getString("name");
+                double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
+                String image = resultSet.getString("image");
+                String description = resultSet.getString("description");
+                String categoryName = resultSet.getString("categoryName");
+                String brandName = resultSet.getString("brandName");
+                Product product = new Product(id,name,price,quantity,image,description,categoryName,brandName);
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return productList;
+    }
 }

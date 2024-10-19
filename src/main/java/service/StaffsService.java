@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaffService implements IService<Staff>{
+public class StaffsService implements IService<Staff>{
     private final Connection connection = ConnectToMySQL.getConnection();
-    public StaffService(){
+    public StaffsService(){
 
     }
     @Override
@@ -228,5 +228,39 @@ public class StaffService implements IService<Staff>{
             throw new RuntimeException(e);
         }
         return staffs;
+    }
+
+    public List<Staff> getStaffByName(String name) {
+        List<Staff> staffList = new ArrayList<>();
+        String sql = "select a.*, b.username as username, c.name as nameDepartment from staff a\n" +
+                "join accounts b on a.userId = b.id\n" +
+                "join department c on a.idDepartment = c.id\n" +
+                "where a.name like ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,"%" + name + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                String gender = resultSet.getString("gender");
+                String address = resultSet.getString("address");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                String image = resultSet.getString("image");
+                int userId = resultSet.getInt("userId");
+                double salary = resultSet.getDouble("salary");
+                int idDepartment = resultSet.getInt("idDepartment");
+                String username = resultSet.getString("username");
+                String nameDepartment = resultSet.getString("nameDepartment");
+                Staff staff = new Staff(id,name,age,gender,address,phone,email,userId,image,salary,idDepartment,username,nameDepartment);
+                staffList.add(staff);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return staffList;
     }
 }

@@ -205,8 +205,6 @@ th {
     background-color: rgb(230, 230, 230);
 }
 
-
-
 .info tr:nth-child(even) {
     background-color: lightcyan;
 }
@@ -287,6 +285,12 @@ th {
     flex-wrap: wrap;
     justify-content: center;
     margin-right: 10px;
+}
+
+.form-role .search {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
 }
 
 .search select {

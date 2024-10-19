@@ -111,6 +111,12 @@ th {
     background-color: lightsalmon;
 }
 
+.form-brand .search {
+    display: flex;
+    justify-content: start;
+    margin-left: 20px;
+}
+
 .form-category .search {
     background-color: white;
     position: relative;
@@ -317,5 +323,3 @@ table button {
 .info .list .list-item:hover {
     background-color: rgb(211, 76, 76);
 }
-
-

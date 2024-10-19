@@ -30,12 +30,14 @@
 
             </div>
             <div class="search-input">
-                <div class="icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <div class="input">
-                    <input type="text" id="search-input" placeholder="Tìm kiếm">
-                </div>
+                <form action="http://localhost:8080/customers" method="get">
+                    <div class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="name" name="name" placeholder="Tìm kiếm" value="${not empty param.name ? param.name : ''}" onchange="this.form.submit()">
+                    </div>
+                </form>
             </div>
         </div>
         <div class="info-product">

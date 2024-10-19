@@ -37,14 +37,6 @@
                             <p>Thêm mới</p>
                         </a>
                     </div>
-                    <div class="search-input">
-                        <div class="icon">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <div class="input">
-                            <input type="text" placeholder="Tìm kiếm">
-                        </div>
-                    </div>
                 </div>
                 <div class="list-category">
                     <table border="1">
