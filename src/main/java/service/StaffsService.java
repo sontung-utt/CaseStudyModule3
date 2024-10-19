@@ -117,9 +117,9 @@ public class StaffsService implements IService<Staff>{
     @Override
     public List<Staff> getAll() {
         List<Staff> staffList = new ArrayList<>();
-        String sql = "select a.*, b.username as username, c.name as nameDepartment from staff a\n" +
-                "join accounts b on a.userId = b.id\n" +
-                "join department c on a.idDepartment = c.id;";
+        String sql = "select a.*, b.username as username, c.name as nameDepartment, (a.salary * c.salaryCoefficient) as totalSalary from staff a\n" +
+                "                join accounts b on a.userId = b.id\n" +
+                "                join department c on a.idDepartment = c.id;";
         try {
             assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -134,7 +134,7 @@ public class StaffsService implements IService<Staff>{
                 String email = resultSet.getString("email");
                 String image = resultSet.getString("image");
                 int userId = resultSet.getInt("userId");
-                double salary = resultSet.getDouble("salary");
+                double salary = resultSet.getDouble("totalSalary");
                 int idDepartment = resultSet.getInt("idDepartment");
                 String username = resultSet.getString("username");
                 String nameDepartment = resultSet.getString("nameDepartment");

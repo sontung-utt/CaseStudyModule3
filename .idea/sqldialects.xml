@@ -14,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/service/OrderService.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/service/ProductService.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/service/RoleService.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/service/StaffsService.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/service/UserService.java" dialect="GenericSQL" />
   </component>
 </project>

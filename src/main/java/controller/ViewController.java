@@ -56,7 +56,7 @@ public class ViewController extends HttpServlet {
             req.setAttribute("idCart",idCart);
             req.setAttribute("idCustomer", idCustomer);
             req.setAttribute("numProduct", numProduct);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/view.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/views.jsp");
             dispatcher.forward(req, resp);
         } else {
             resp.sendRedirect("/loginUser");

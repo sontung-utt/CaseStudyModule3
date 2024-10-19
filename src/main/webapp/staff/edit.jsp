@@ -76,7 +76,7 @@
         <form action="http://localhost:8080/staff?action=edit" method="post">
             <table border="1">
                 <tr>
-                    <th colspan="2">THÊM MỚI NHÂN SỰ</th>
+                    <th colspan="2">SỬA THÔNG TIN NHÂN SỰ</th>
                 </tr>
                 <tr>
                     <td class="info">

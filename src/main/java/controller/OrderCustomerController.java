@@ -65,7 +65,7 @@ public class OrderCustomerController extends HttpServlet {
             req.setAttribute("list",list);
             req.setAttribute("idOrder",idOrder);
             req.setAttribute("total",total);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/order/viewOrderDetail.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/order/viewDetail.jsp");
             dispatcher.forward(req,resp);
         } else {
             resp.sendRedirect("/loginUser");
@@ -86,7 +86,7 @@ public class OrderCustomerController extends HttpServlet {
             } else {
                 req.setAttribute("cartDetailList",cartDetailList);
                 req.setAttribute("total",total);
-                RequestDispatcher dispatcher = req.getRequestDispatcher("/order/orderDetail.jsp");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/order/order_detail.jsp");
                 dispatcher.forward(req,resp);
             }
         } else {

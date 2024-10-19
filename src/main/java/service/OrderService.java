@@ -101,7 +101,8 @@ public class OrderService{
                 String formattedTime = time.format(formatter);
                 double total = resultSet.getDouble("total");
                 int idCart = resultSet.getInt("idCart");
-                Order order = new Order(id,formattedTime,total,idCart,idCustomer);
+                String status = resultSet.getString("status");
+                Order order = new Order(id,formattedTime,total,idCart,idCustomer,status);
                 orderList.add(order);
             }
         } catch (SQLException e) {

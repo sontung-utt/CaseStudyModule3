@@ -35,7 +35,7 @@ public class LoginCustomerController extends HttpServlet {
         String customerUserName = (String) session.getAttribute("customerUserName");
         if (customerUserName != null){
             req.setAttribute("customerUserName",customerUserName);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/view.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/customer/views.jsp");
             dispatcher.forward(req,resp);
         } else {
             resp.sendRedirect("/loginUser");
