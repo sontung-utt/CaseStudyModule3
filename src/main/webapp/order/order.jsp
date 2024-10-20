@@ -30,12 +30,15 @@
 
             </div>
             <div class="search-input">
-                <div class="icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <div class="input">
-                    <input type="text" id="search-input" placeholder="Tìm kiếm">
-                </div>
+                <form action="http://localhost:8080/orderStaff" method="get">
+                    <input type="hidden" name="action" value="order">
+                    <div class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="nameCustomer" name="nameCustomer" placeholder="Tìm kiếm" value="${param.nameCustomer}" onchange="this.form.submit()">
+                    </div>
+                </form>
             </div>
         </div>
         <div class="info-product">
@@ -44,8 +47,8 @@
                     <th>STT</th>
                     <th>Mã đơn hàng</th>
                     <th>Tên khách hàng</th>
-                    <th>Tổng tiền</th>
                     <th>Ngày đặt hàng</th>
+                    <th>Tổng tiền</th>
                     <th>Trạng thái</th>
                     <th>Hành động</th>
                 </tr>
@@ -63,8 +66,8 @@
                         <td>${item.total}</td>
                         <td>${item.status}</td>
                         <td class="medium">
-                            <a href="http://localhost:8080/"><button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                            <a href="http://localhost:8080/"><button class="btn btn-remove"><i class="fa-solid fa-eye"></i></button></a>
+                            <a href="http://localhost:8080/orderStaff?action=edit&id=${item.id}"><button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                            <a href="http://localhost:8080/orderStaff?action=orderDetail&id=${item.id}"><button class="btn btn-remove"><i class="fa-solid fa-eye"></i></button></a>
                         </td>
 
                     </tr>

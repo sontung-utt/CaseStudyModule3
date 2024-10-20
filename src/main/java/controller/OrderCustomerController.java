@@ -46,7 +46,12 @@ public class OrderCustomerController extends HttpServlet {
         int idCustomer = customerService.getIdByUserId(idLogin);
         if (idCustomer != -1){
             List<Order> orderList = orderService.getOrderListByIdCustomer(idCustomer);
-            req.setAttribute("orderList", orderList);
+            if (orderList.isEmpty()){
+                req.setAttribute("errorMessage", "Bạn chưa có đơn hàng nào.");
+                req.setAttribute("orderList", orderList);
+            } else {
+                req.setAttribute("orderList", orderList);
+            }
             RequestDispatcher dispatcher = req.getRequestDispatcher("/order/view.jsp");
             dispatcher.forward(req, resp);
         } else {
@@ -81,7 +86,6 @@ public class OrderCustomerController extends HttpServlet {
             double total = cartDetailService.totalPerCartId(idCart);
             List<CartDetail> cartDetailList = cartDetailService.getListCartByIdCart(idCart);
             if (cartDetailList.isEmpty()){
-                req.setAttribute("errorMessage", "Giỏ hàng hiện tại đang trống!");
                 resp.sendRedirect("/view");
             } else {
                 req.setAttribute("cartDetailList",cartDetailList);

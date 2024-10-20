@@ -34,11 +34,6 @@
         </div>
 
     </div>
-    <% if (request.getAttribute("errorMessage") != null) { %>
-    <div class="error-message">
-        <p><%= request.getAttribute("errorMessage") %></p>
-    </div>
-    <% } %>
 
     <div class="info-cart">
             <table border="1">
@@ -53,6 +48,7 @@
                     <th>Trạng thái</th>
                     <th>Chi tiết đơn hàng</th>
                 </tr>
+
                 <c:forEach var="item" items="${orderList}" varStatus="loop">
                     <tr>
                         <td>${loop.index + 1}</td>
@@ -68,6 +64,11 @@
 
             </table>
     </div>
+    <c:if test="${not empty errorMessage}">
+        <div class="error-message">
+            <p>${errorMessage}</p>
+        </div>
+    </c:if>
 
 </div>
 </body>

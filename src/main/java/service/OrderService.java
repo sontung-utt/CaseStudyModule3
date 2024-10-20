@@ -34,13 +34,13 @@ public class OrderService{
     public void update(int id, Order order) {
         String sql = "update `order` \n" +
                 "set status = ?\n" +
-                "where id = ? and idCustomer = ?;";
+                "where id = ?;";
         try {
             assert connection != null;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,order.getStatus());
             preparedStatement.setInt(2,id);
-            preparedStatement.setInt(3,order.getIdCustomer());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +58,28 @@ public class OrderService{
 
 
     public Order findById(int id) {
-        return null;
+        Order order = null;
+        String sql = "select a.*,b.name as nameCustomer from `order` a join customer b on a.idCustomer = b.id where a.id = ?;";
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                id = resultSet.getInt("id");
+                LocalDateTime time = resultSet.getTimestamp("time").toLocalDateTime();
+                String formattedTime = time.format(formatter);
+                double total = resultSet.getDouble("total");
+                int idCart = resultSet.getInt("idCart");
+                int idCustomer = resultSet.getInt("idCustomer");
+                String nameCustomer = resultSet.getString("nameCustomer");
+                String status = resultSet.getString("status");
+                order = new Order(id,formattedTime,total,idCart,idCustomer,status,nameCustomer);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return order;
     }
 
 
@@ -167,5 +188,31 @@ public class OrderService{
             throw new RuntimeException(e);
         }
         return 0;
+    }
+
+    public List<Order> searchOrderList(String nameCustomer){
+        String sql = "select a.*,b.name as nameCustomer from `order` a join customer b on a.idCustomer = b.id where b.name like ?;";
+        List<Order> orderList = new ArrayList<>();
+        try {
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,"%"+nameCustomer+"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                LocalDateTime time = resultSet.getTimestamp("time").toLocalDateTime();
+                String formattedTime = time.format(formatter);
+                double total = resultSet.getDouble("total");
+                int idCart = resultSet.getInt("idCart");
+                int idCustomer = resultSet.getInt("idCustomer");
+                nameCustomer = resultSet.getString("nameCustomer");
+                String status = resultSet.getString("status");
+                Order order = new Order(id,formattedTime,total,idCart,idCustomer,status,nameCustomer);
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orderList;
     }
 }

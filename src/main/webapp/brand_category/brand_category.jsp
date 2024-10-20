@@ -58,7 +58,7 @@
                                 <td>${item.brand.name}</td>
                                 <td>
                                     <a href="http://localhost:8080/brand_category?action=edit&id=${item.id}"><button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                                    <a href="http://localhost:8080/brand_category?action=delete&id=${item.id}"><button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button></a>
+                                    <a href="http://localhost:8080/brand_category?action=delete&id=${item.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa nhóm này không?')";><button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button></a>
                                 </td>
                             </tr>
                         </c:forEach>

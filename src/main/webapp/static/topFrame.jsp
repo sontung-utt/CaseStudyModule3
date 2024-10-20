@@ -32,7 +32,7 @@
     <a href="http://localhost:8080/logout">
         <div class="logout">
             <i class="fa-solid fa-right-from-bracket"></i>
-            <p>Đăng xuất</p>
+            <p onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')";>Đăng xuất</p>
         </div>
     </a>
 

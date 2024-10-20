@@ -72,7 +72,7 @@
                         <td class="large">${item.modified_at}</td>
                         <td class="medium">
                             <a href="http://localhost:8080/accounts?action=edit&id=${item.id}"><button class="btn btn-edit"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                            <a href="http://localhost:8080/accounts?action=delete&id=${item.id}"><button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button></a>
+                            <a href="http://localhost:8080/accounts?action=delete&id=${item.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?')";><button class="btn btn-remove"><i class="fa-solid fa-trash-can"></i></button></a>
                         </td>
                     </tr>
                 </c:forEach>

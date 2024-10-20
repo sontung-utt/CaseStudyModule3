@@ -151,7 +151,7 @@
                 </div>
                 <div class="item">
                     <a href="http://localhost:8080/accCustomers?action=view"><p>${customerUserName}</p></a>
-                    <a href="http://localhost:8080/logout?action=customer"><p>Đăng xuất</p></a>
+                    <a href="http://localhost:8080/logout?action=customer"><p onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')";>Đăng xuất</p></a>
                 </div>
             </div>
 

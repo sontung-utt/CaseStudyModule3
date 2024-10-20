@@ -21,6 +21,13 @@ public class Order {
         this.status = status;
     }
 
+    public Order(int id, String time, double total, String status) {
+        this.id = id;
+        this.time = time;
+        this.total = total;
+        this.status = status;
+    }
+
     public Order(int id, String time, double total, int idCart, int idCustomer, String status, String nameCustomer) {
         this.id = id;
         this.time = time;

@@ -92,7 +92,12 @@ public class CartController extends HttpServlet {
         if (idCustomer != -1){
             int idCart = cartService.getIdCartByIdCustomer(idCustomer);
             List<CartDetail> cartDetailList = cartDetailService.getListCartByIdCart(idCart);
-            req.setAttribute("cartDetailList", cartDetailList);
+            if (cartDetailList.isEmpty()){
+                req.setAttribute("errorMessage", "Giỏ hàng hiện tại đang trống!");
+                req.setAttribute("cartDetailList", cartDetailList);
+            } else {
+                req.setAttribute("cartDetailList", cartDetailList);
+            }
             RequestDispatcher dispatcher = req.getRequestDispatcher("/cart/cart.jsp");
             dispatcher.forward(req, resp);
         } else {
@@ -125,7 +130,7 @@ public class CartController extends HttpServlet {
         int idCart = cartService.getIdCartByIdCustomer(idCustomer);
         CartDetail cartDetail = new CartDetail(idCart,idProduct,quantity,price);
         cartDetailIService.add(cartDetail);
-        resp.sendRedirect("/view");
+        resp.sendRedirect("/cart?action=cart");
     }
 
     public void editCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -140,6 +145,6 @@ public class CartController extends HttpServlet {
         int id = existCartDetail.getId();
         CartDetail cartDetail = new CartDetail(id,idCart,idProduct,quantity);
         cartDetailIService.update(id,cartDetail);
-        resp.sendRedirect("/view");
+        resp.sendRedirect("/cart?action=cart");
     }
 }

@@ -34,12 +34,9 @@
             </div>
 
         </div>
-        <% if (request.getAttribute("errorMessage") != null) { %>
-        <div class="error-message">
-            <p><%= request.getAttribute("errorMessage") %></p>
-        </div>
-        <% } %>
+
         <div class="info-cart">
+
             <table border="1">
                 <tr>
                     <th colspan="6">THÔNG TIN GIỎ HÀNG</th>
@@ -53,6 +50,7 @@
                     <th>Cập nhật giỏ hàng</th>
                 </tr>
                 <c:forEach var="item" items="${cartDetailList}" varStatus="loop">
+
                     <tr>
                         <td>${loop.index + 1}</td>
                         <td>${item.nameProduct}</td>
@@ -61,7 +59,7 @@
                         <td>${item.created_at}</td>
                         <td class="btn">
                             <a href="http://localhost:8080/cart?action=add&idProduct=${item.idProduct}"><button><i class="fa-solid fa-cart-arrow-down"></i></button></a>
-                            <a href="http://localhost:8080/cart?action=delete&id=${item.id}"><button><i class="fa-solid fa-trash"></i></button></a>
+                            <a href="http://localhost:8080/cart?action=delete&id=${item.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng không?')";><button><i class="fa-solid fa-trash"></i></button></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -71,7 +69,13 @@
                     </th>
                 </tr>
             </table>
+
     </div>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    <div class="error-message">
+        <p><%= request.getAttribute("errorMessage") %></p>
+    </div>
+    <% } %>
 </div>
 </body>
 </html>
